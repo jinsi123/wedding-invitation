@@ -1,0 +1,5 @@
+# 사진은 로컬에서만 보관 (공개 레포에 올리지 않음)
+images/*.jpg
+images/*.jpeg
+images/*.png
+images/*.heic
