@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>민준 ♥ 서연 결혼합니다</title>
+  <!-- 카카오톡/문자 공유 미리보기. 배포 후 og:image는 절대 URL(https://...)로 바꿔야 미리보기 사진이 뜹니다. -->
+  <meta property="og:title" content="민준 ♥ 서연 결혼합니다">
+  <meta property="og:description" content="2027년 5월 15일 토요일 오후 1시, 더채플 그랜드홀">
+  <meta property="og:image" content="images/main.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* 흑백 기본 + 포인트 컬러(딥 와인) 하나만 사용 */
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --ink: #1c1c1c;
+      --muted: #707070;
+      --line: #e6e6e6;
+      --soft: #f5f5f5;
+      --accent: #7b2433;
+      --font-ko: "Nanum Myeongjo", serif;
+      --font-en: "Cormorant Garamond", "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--black);
+      color: var(--ink);
+      font-family: var(--font-ko);
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 430px; margin: 0 auto; background: var(--white); min-height: 100vh; }
+    section { padding: 72px 28px; text-align: center; }
+    section + section { border-top: 1px solid var(--line); }
+    h2 {
+      font-family: var(--font-en); font-weight: 500; font-size: 15px;
+      letter-spacing: .35em; color: var(--accent); margin-bottom: 32px;
+    }
+    .muted { color: var(--muted); font-size: 14px; }
+
+    .hero { padding: 0 0 56px; background: var(--black); color: var(--white); }
+    .hero-label {
+      font-family: var(--font-en); font-size: 13px; letter-spacing: .4em;
+      color: #bdbdbd; padding: 40px 0 24px;
+    }
+    .hero-photo {
+      width: calc(100% - 56px); margin: 0 auto; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+      background: linear-gradient(160deg, #3a3a3a, #1f1f1f);
+    }
+    .hero-names { font-size: 24px; margin-top: 36px; letter-spacing: .12em; }
+    .hero-names span { font-family: var(--font-en); font-style: italic; margin: 0 12px; color: #bdbdbd; }
+    .hero-date { margin-top: 10px; color: #bdbdbd; font-size: 14px; }
+    .hero + section { border-top: 0; }
+
+    .greeting p { white-space: pre-line; font-size: 15px; }
+    .parents { margin-top: 36px; font-size: 15px; }
+    .parents b { font-weight: 700; }
+
+    .calendar { width: 100%; max-width: 300px; margin: 24px auto 0; border-collapse: collapse; font-size: 14px; }
+    .calendar th { color: var(--muted); font-weight: 400; padding: 6px 0; }
+    .calendar td { padding: 7px 0; }
+    .calendar .sun { color: var(--accent); }
+    .calendar .day-on span {
+      display: inline-block; width: 30px; height: 30px; line-height: 30px;
+      border-radius: 50%; background: var(--accent); color: var(--white);
+    }
+    .dday { margin-top: 24px; font-size: 15px; }
+    .dday b { color: var(--accent); }
+
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .gallery img, .gallery .ph {
+      width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; display: block;
+      background: linear-gradient(135deg, #ededed, #d4d4d4);
+    }
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,.88); display: none;
+      align-items: center; justify-content: center; z-index: 10; padding: 16px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 90vh; }
+
+    .venue-name { font-size: 18px; }
+    .map-links { display: flex; gap: 8px; margin-top: 24px; }
+    .btn {
+      flex: 1; padding: 12px 8px; border: 1px solid var(--ink); border-radius: 0;
+      background: var(--white); color: var(--ink); font: inherit; font-size: 14px;
+      text-decoration: none; cursor: pointer;
+    }
+    .btn:active { background: var(--soft); }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .btn.primary { background: var(--black); color: var(--white); }
+    .transport { text-align: left; margin-top: 28px; font-size: 14px; }
+    .transport dt { color: var(--accent); margin-top: 14px; }
+
+    .account-group { text-align: left; margin-top: 12px; border: 1px solid var(--line); overflow: hidden; }
+    .account-group summary { padding: 14px 16px; cursor: pointer; list-style: none; font-size: 15px; }
+    .account-group summary::after { content: "＋"; float: right; color: var(--muted); }
+    .account-group[open] summary::after { content: "－"; }
+    .account {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 12px 16px; border-top: 1px solid var(--line); font-size: 14px;
+    }
+    .account .btn { flex: none; padding: 6px 12px; font-size: 13px; }
+
+    .share { display: flex; gap: 8px; }
+    footer {
+      padding: 40px 32px; text-align: center; background: var(--black); color: #bdbdbd;
+      font-family: var(--font-en); font-style: italic; font-size: 16px; letter-spacing: .1em;
+    }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
+      background: var(--black); color: var(--white); padding: 10px 18px; border-radius: 20px;
+      font-size: 14px; opacity: 0; transition: opacity .25s; pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+
+    .fade { opacity: 0; transform: translateY(16px); transition: opacity .8s, transform .8s; }
+    .fade.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <p class="hero-label">THE WEDDING OF</p>
+    <img class="hero-photo" id="heroPhoto" alt="">
+    <p class="hero-names" id="heroNames"></p>
+    <p class="hero-date muted" id="heroDate"></p>
+  </section>
+
+  <section class="greeting fade">
+    <h2>INVITATION</h2>
+    <p id="greeting"></p>
+    <div class="parents" id="parents"></div>
+  </section>
+
+  <section class="fade">
+    <h2>WEDDING DAY</h2>
+    <p id="dateLine"></p>
+    <table class="calendar" id="calendar"></table>
+    <p class="dday" id="dday"></p>
+  </section>
+
+  <section class="fade" style="padding-left:0;padding-right:0">
+    <h2>GALLERY</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="fade">
+    <h2>LOCATION</h2>
+    <p class="venue-name" id="venueName"></p>
+    <p class="muted" id="venueAddress"></p>
+    <div class="map-links" id="mapLinks"></div>
+    <dl class="transport" id="transport"></dl>
+  </section>
+
+  <section class="fade">
+    <h2>마음 전하실 곳</h2>
+    <p class="muted">참석이 어려우신 분들을 위해 기재했습니다.</p>
+    <div id="accounts"></div>
+  </section>
+
+  <section class="fade">
+    <h2>SHARE</h2>
+    <div class="share">
+      <button class="btn" id="copyLink">링크 복사</button>
+      <button class="btn primary" id="nativeShare">공유하기</button>
+    </div>
+  </section>
+
+  <footer>Thank you</footer>
+</main>
+
+<div class="lightbox" id="lightbox"><img alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ============================================================
+     여기만 수정하세요. (사진은 images/ 폴더에 넣고 파일명만 적기)
+     ============================================================ */
+  const CONFIG = {
+    groom: { name: "김민준", short: "민준", father: "김철수", mother: "이영희", order: "장남" },
+    bride: { name: "박서연", short: "서연", father: "박정호", mother: "최미경", order: "장녀" },
+    date: "2027-05-15T13:00:00",   // 예식 일시 (24시간제)
+    venue: {
+      name: "더채플 그랜드홀 3층",
+      address: "서울특별시 강남구 테헤란로 123",
+    },
+    greeting:
+      "서로 다른 길을 걸어온 두 사람이\n이제 같은 길을 함께 걸어가려 합니다.\n\n" +
+      "저희의 새로운 시작을\n축복해 주시면 감사하겠습니다.",
+    heroPhoto: "images/main.jpg",
+    gallery: [],                    // 예: ["images/1.jpg", "images/2.jpg"]
+    transport: [
+      { label: "지하철", text: "2호선 강남역 3번 출구 도보 5분" },
+      { label: "버스", text: "강남역 정류장 하차 (146, 341, 360)" },
+      { label: "주차", text: "건물 지하 주차장 2시간 무료" },
+    ],
+    accounts: {
+      groom: [
+        { who: "신랑 김민준", bank: "국민은행", number: "123-456-789012" },
+        { who: "아버지 김철수", bank: "신한은행", number: "110-123-456789" },
+      ],
+      bride: [
+        { who: "신부 박서연", bank: "우리은행", number: "1002-123-456789" },
+        { who: "어머니 최미경", bank: "농협", number: "301-1234-5678-91" },
+      ],
+    },
+  };
+  /* ============================================================ */
+
+  const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, props = {}, children = []) => {
+    const node = Object.assign(document.createElement(tag), props);
+    node.append(...children);
+    return node;
+  };
+
+  const wedding = new Date(CONFIG.date);
+  const formatDate = (d) => {
+    const h = d.getHours();
+    const time = `${h < 12 ? "오전" : "오후"} ${h % 12 || 12}시${d.getMinutes() ? ` ${d.getMinutes()}분` : ""}`;
+    return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 ${WEEKDAYS[d.getDay()]}요일 ${time}`;
+  };
+
+  function toast(message) {
+    const t = $("toast");
+    t.textContent = message;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 1600);
+  }
+
+  // clipboard API는 https 또는 localhost에서만 동작해서 구형 방식으로 한 번 더 시도
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = el("textarea", { value: text });
+      document.body.append(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    toast("복사되었습니다");
+  }
+
+  function renderHero() {
+    const photo = $("heroPhoto");
+    photo.src = CONFIG.heroPhoto;
+    photo.onerror = () => photo.removeAttribute("src");
+    $("heroNames").append(CONFIG.groom.short, el("span", { textContent: "&" }), CONFIG.bride.short);
+    $("heroDate").textContent = formatDate(wedding);
+    $("greeting").textContent = CONFIG.greeting;
+
+    const line = (p) => el("p", {}, [`${p.father} · ${p.mother} 의 ${p.order} `, el("b", { textContent: p.name })]);
+    $("parents").append(line(CONFIG.groom), line(CONFIG.bride));
+  }
+
+  function renderCalendar() {
+    $("dateLine").textContent = formatDate(wedding);
+    const year = wedding.getFullYear();
+    const month = wedding.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    const head = el("tr", {}, WEEKDAYS.map((w, i) => el("th", { textContent: w, className: i === 0 ? "sun" : "" })));
+    const rows = [head];
+    let row = el("tr");
+    for (let i = 0; i < firstDay; i++) row.append(el("td"));
+    for (let d = 1; d <= lastDate; d++) {
+      const col = (firstDay + d - 1) % 7;
+      const classes = [col === 0 ? "sun" : "", d === wedding.getDate() ? "day-on" : ""].join(" ");
+      row.append(el("td", { className: classes }, [el("span", { textContent: d })]));
+      if (col === 6) { rows.push(row); row = el("tr"); }
+    }
+    if (row.children.length) rows.push(row);
+    $("calendar").append(...rows);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const target = new Date(year, month, wedding.getDate());
+    const diff = Math.round((target - today) / 86400000);
+    const names = `${CONFIG.groom.short} ♥ ${CONFIG.bride.short}의 결혼식이 `;
+    const msg = diff > 0 ? [names, el("b", { textContent: `${diff}일` }), " 남았습니다"]
+      : diff === 0 ? [names, el("b", { textContent: "오늘" }), "입니다"]
+      : ["소중한 발걸음에 감사드립니다"];
+    $("dday").append(...msg);
+  }
+
+  function renderGallery() {
+    const box = $("gallery");
+    const lightbox = $("lightbox");
+    if (!CONFIG.gallery.length) {
+      for (let i = 0; i < 6; i++) box.append(el("div", { className: "ph" }));
+      return;
+    }
+    CONFIG.gallery.forEach((src) => {
+      const img = el("img", { src, loading: "lazy", alt: "" });
+      img.onclick = () => { lightbox.firstElementChild.src = src; lightbox.classList.add("open"); };
+      box.append(img);
+    });
+    lightbox.onclick = () => lightbox.classList.remove("open");
+  }
+
+  function renderLocation() {
+    const { name, address } = CONFIG.venue;
+    $("venueName").textContent = name;
+    $("venueAddress").textContent = address;
+    const q = encodeURIComponent(address);
+    const links = [
+      ["네이버 지도", `https://map.naver.com/p/search/${q}`],
+      ["카카오맵", `https://map.kakao.com/link/search/${q}`],
+    ];
+    links.forEach(([label, href]) =>
+      $("mapLinks").append(el("a", { className: "btn", textContent: label, href, target: "_blank", rel: "noopener" })));
+    const copy = el("button", { className: "btn", textContent: "주소 복사" });
+    copy.onclick = () => copyText(address);
+    $("mapLinks").append(copy);
+
+    CONFIG.transport.forEach(({ label, text }) =>
+      $("transport").append(el("dt", { textContent: label }), el("dd", { textContent: text })));
+  }
+
+  function renderAccounts() {
+    const group = (title, list) => el("details", { className: "account-group" }, [
+      el("summary", { textContent: title }),
+      ...list.map(({ who, bank, number }) => {
+        const btn = el("button", { className: "btn", textContent: "복사" });
+        btn.onclick = () => copyText(`${bank} ${number}`);
+        return el("div", { className: "account" }, [
+          el("div", {}, [who, el("br"), el("span", { className: "muted", textContent: `${bank} ${number}` })]),
+          btn,
+        ]);
+      }),
+    ]);
+    $("accounts").append(group("신랑측 계좌번호", CONFIG.accounts.groom), group("신부측 계좌번호", CONFIG.accounts.bride));
+  }
+
+  function setupShare() {
+    $("copyLink").onclick = () => copyText(location.href);
+    $("nativeShare").onclick = async () => {
+      if (!navigator.share) return copyText(location.href);
+      try { await navigator.share({ title: document.title, url: location.href }); }
+      catch { /* 사용자가 공유창을 닫은 경우 */ }
+    };
+  }
+
+  function setupFadeIn() {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { threshold: 0.15 });
+    document.querySelectorAll(".fade").forEach((s) => io.observe(s));
+  }
+
+  renderHero();
+  renderCalendar();
+  renderGallery();
+  renderLocation();
+  renderAccounts();
+  setupShare();
+  setupFadeIn();
+</script>
+</body>
+</html>
