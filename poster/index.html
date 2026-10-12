@@ -10,77 +10,80 @@
   <meta property="og:image" content="https://jinsi123.github.io/wedding-invitation/images/main.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Archivo:wdth,wght@75..100,400..600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* 화이트 심플 포스터: 흰 바탕 + 블루 잉크 한 색. 손글씨는 표지 제목과 이름에만 사용 */
+    /* 재생지 포스터: 색 알갱이가 박힌 크림색 종이 + 진한 갈색 굵은 세리프. 손글씨 없음 */
     :root {
-      --black: #141414;
-      --white: #ffffff;
-      --ink: #1a1a1a;
-      --muted: #727272;
-      --line: #e4e4e4;
-      --soft: #f5f5f5;
-      --blue: #24409a;         /* 흰 바탕 위 글씨·채움 모두 대비 충분 */
-      --blue-light: #e9edf8;   /* 지도 대체 박스 등 옅은 바탕 */
-      --font-hand: "Mrs Saint Delafield", cursive;
+      --black: #2e241e;
+      --white: #fffdf8;
+      --paper: #f5f0e6;
+      --ink: #3a2e27;
+      --muted: #85786d;
+      --line: #e3dace;
+      --soft: #ede6da;
+      --brown: #3d2c22;        /* 크림 바탕 위 글씨·채움 모두 대비 충분 */
+      --brown-light: #ebe2d4;  /* 지도 대체 박스 등 옅은 바탕 */
+      --font-display: "Fraunces", "Nanum Myeongjo", serif;
       --font-en: "Archivo", "Helvetica Neue", sans-serif;
       --font-serif: "Nanum Myeongjo", serif;
       --font-body: "Noto Sans KR", sans-serif;
+      --speckle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cellipse cx='229.9' cy='102.2' rx='1.22' ry='0.97' transform='rotate%2848 229.9 102.2%29' fill='%23d6bf9f' opacity='0.87'/%3E%3Cellipse cx='122.6' cy='207.2' rx='1.40' ry='0.94' transform='rotate%2836 122.6 207.2%29' fill='%23e2b39a' opacity='0.45'/%3E%3Cellipse cx='138.8' cy='39.2' rx='1.41' ry='1.29' transform='rotate%2893 138.8 39.2%29' fill='%23d6bf9f' opacity='0.76'/%3E%3Cellipse cx='103.3' cy='151.1' rx='0.98' ry='0.83' transform='rotate%2863 103.3 151.1%29' fill='%23c79a73' opacity='0.80'/%3E%3Cellipse cx='34.8' cy='75.9' rx='1.03' ry='0.63' transform='rotate%2840 34.8 75.9%29' fill='%23e8c9b5' opacity='0.89'/%3E%3Cellipse cx='181.0' cy='38.8' rx='0.95' ry='0.85' transform='rotate%2894 181.0 38.8%29' fill='%23c79a73' opacity='0.73'/%3E%3Cellipse cx='118.1' cy='10.5' rx='0.88' ry='0.35' transform='rotate%2869 118.1 10.5%29' fill='%23e8c9b5' opacity='0.79'/%3E%3Cellipse cx='84.7' cy='136.5' rx='1.28' ry='0.62' transform='rotate%28129 84.7 136.5%29' fill='%23c79a73' opacity='0.66'/%3E%3Cellipse cx='138.5' cy='57.7' rx='0.56' ry='0.49' transform='rotate%28119 138.5 57.7%29' fill='%23e8c9b5' opacity='0.72'/%3E%3Cellipse cx='183.8' cy='135.2' rx='1.37' ry='0.83' transform='rotate%28158 183.8 135.2%29' fill='%23a89a8c' opacity='0.63'/%3E%3Cellipse cx='105.9' cy='175.8' rx='0.71' ry='0.37' transform='rotate%28147 105.9 175.8%29' fill='%23e2b39a' opacity='0.76'/%3E%3Cellipse cx='177.3' cy='223.7' rx='0.99' ry='0.56' transform='rotate%28179 177.3 223.7%29' fill='%23e8c9b5' opacity='0.69'/%3E%3Cellipse cx='5.0' cy='27.3' rx='1.14' ry='1.03' transform='rotate%2872 5.0 27.3%29' fill='%23e2b39a' opacity='0.49'/%3E%3Cellipse cx='105.8' cy='235.3' rx='0.61' ry='0.52' transform='rotate%2888 105.8 235.3%29' fill='%23a89a8c' opacity='0.59'/%3E%3Cellipse cx='89.1' cy='129.4' rx='0.87' ry='0.85' transform='rotate%28167 89.1 129.4%29' fill='%23a89a8c' opacity='0.88'/%3E%3Cellipse cx='101.7' cy='100.1' rx='0.75' ry='0.55' transform='rotate%2852 101.7 100.1%29' fill='%23e8c9b5' opacity='0.82'/%3E%3Cellipse cx='213.9' cy='115.4' rx='1.09' ry='1.01' transform='rotate%28180 213.9 115.4%29' fill='%23c79a73' opacity='0.45'/%3E%3Cellipse cx='137.2' cy='7.9' rx='1.58' ry='1.30' transform='rotate%2881 137.2 7.9%29' fill='%23a89a8c' opacity='0.63'/%3E%3Cellipse cx='160.2' cy='31.8' rx='1.66' ry='1.14' transform='rotate%2896 160.2 31.8%29' fill='%23e2b39a' opacity='0.46'/%3E%3Cellipse cx='5.1' cy='179.0' rx='0.72' ry='0.63' transform='rotate%28146 5.1 179.0%29' fill='%23e2b39a' opacity='0.57'/%3E%3Cellipse cx='197.8' cy='142.8' rx='0.72' ry='0.35' transform='rotate%28106 197.8 142.8%29' fill='%23e2b39a' opacity='0.82'/%3E%3Cellipse cx='16.6' cy='52.5' rx='0.57' ry='0.30' transform='rotate%2839 16.6 52.5%29' fill='%23d6bf9f' opacity='0.55'/%3E%3Cellipse cx='94.6' cy='133.4' rx='0.91' ry='0.58' transform='rotate%2857 94.6 133.4%29' fill='%23e8c9b5' opacity='0.77'/%3E%3Cellipse cx='171.8' cy='73.3' rx='1.61' ry='1.58' transform='rotate%2890 171.8 73.3%29' fill='%23c79a73' opacity='0.81'/%3E%3Cellipse cx='194.3' cy='201.3' rx='0.76' ry='0.35' transform='rotate%28160 194.3 201.3%29' fill='%23a89a8c' opacity='0.58'/%3E%3Cellipse cx='57.0' cy='192.3' rx='1.21' ry='0.72' transform='rotate%28164 57.0 192.3%29' fill='%23c79a73' opacity='0.47'/%3E%3Cellipse cx='235.6' cy='136.9' rx='1.36' ry='1.23' transform='rotate%2869 235.6 136.9%29' fill='%23d6bf9f' opacity='0.85'/%3E%3Cellipse cx='25.5' cy='183.0' rx='1.58' ry='1.22' transform='rotate%28108 25.5 183.0%29' fill='%23e8c9b5' opacity='0.55'/%3E%3Cellipse cx='60.5' cy='27.1' rx='0.60' ry='0.26' transform='rotate%2892 60.5 27.1%29' fill='%23e8c9b5' opacity='0.74'/%3E%3Cellipse cx='96.3' cy='4.2' rx='0.57' ry='0.36' transform='rotate%28164 96.3 4.2%29' fill='%23c79a73' opacity='0.69'/%3E%3Cellipse cx='111.4' cy='5.5' rx='1.08' ry='0.92' transform='rotate%2817 111.4 5.5%29' fill='%23c79a73' opacity='0.87'/%3E%3Cellipse cx='108.4' cy='13.3' rx='1.19' ry='0.82' transform='rotate%28110 108.4 13.3%29' fill='%23e2b39a' opacity='0.79'/%3E%3Cellipse cx='107.8' cy='190.4' rx='1.37' ry='0.75' transform='rotate%28130 107.8 190.4%29' fill='%23e8c9b5' opacity='0.83'/%3E%3Cellipse cx='75.2' cy='134.4' rx='1.08' ry='0.72' transform='rotate%2876 75.2 134.4%29' fill='%23e8c9b5' opacity='0.73'/%3E%3Cellipse cx='89.1' cy='202.2' rx='0.72' ry='0.60' transform='rotate%28179 89.1 202.2%29' fill='%23d6bf9f' opacity='0.78'/%3E%3Cellipse cx='81.2' cy='128.3' rx='1.18' ry='0.88' transform='rotate%283 81.2 128.3%29' fill='%23e8c9b5' opacity='0.89'/%3E%3Cellipse cx='119.3' cy='78.5' rx='1.28' ry='1.04' transform='rotate%28158 119.3 78.5%29' fill='%23b98a6a' opacity='0.81'/%3E%3Cellipse cx='191.2' cy='7.0' rx='1.51' ry='1.07' transform='rotate%28127 191.2 7.0%29' fill='%23c79a73' opacity='0.75'/%3E%3Cellipse cx='18.7' cy='217.6' rx='0.54' ry='0.45' transform='rotate%2878 18.7 217.6%29' fill='%23e8c9b5' opacity='0.66'/%3E%3Cellipse cx='110.4' cy='145.1' rx='0.80' ry='0.32' transform='rotate%2892 110.4 145.1%29' fill='%23c79a73' opacity='0.78'/%3E%3Cellipse cx='18.3' cy='6.9' rx='0.79' ry='0.47' transform='rotate%2869 18.3 6.9%29' fill='%23e2b39a' opacity='0.87'/%3E%3Cellipse cx='190.5' cy='135.9' rx='0.79' ry='0.38' transform='rotate%28117 190.5 135.9%29' fill='%23d6bf9f' opacity='0.74'/%3E%3Cellipse cx='184.0' cy='85.5' rx='1.68' ry='0.77' transform='rotate%28122 184.0 85.5%29' fill='%23e8c9b5' opacity='0.49'/%3E%3Cellipse cx='101.9' cy='107.1' rx='0.62' ry='0.60' transform='rotate%2843 101.9 107.1%29' fill='%23d6bf9f' opacity='0.83'/%3E%3Cellipse cx='110.9' cy='202.0' rx='1.50' ry='0.64' transform='rotate%287 110.9 202.0%29' fill='%23c79a73' opacity='0.62'/%3E%3Cellipse cx='153.0' cy='31.3' rx='0.92' ry='0.70' transform='rotate%28141 153.0 31.3%29' fill='%23a89a8c' opacity='0.61'/%3E%3Cellipse cx='173.2' cy='233.1' rx='1.26' ry='1.01' transform='rotate%2839 173.2 233.1%29' fill='%23e8c9b5' opacity='0.86'/%3E%3Cellipse cx='186.2' cy='143.1' rx='1.29' ry='0.82' transform='rotate%2846 186.2 143.1%29' fill='%23e2b39a' opacity='0.81'/%3E%3Cellipse cx='231.0' cy='8.4' rx='0.71' ry='0.37' transform='rotate%2865 231.0 8.4%29' fill='%23b98a6a' opacity='0.80'/%3E%3Cellipse cx='106.5' cy='42.2' rx='0.60' ry='0.27' transform='rotate%28153 106.5 42.2%29' fill='%23e2b39a' opacity='0.87'/%3E%3Cellipse cx='37.0' cy='137.1' rx='0.70' ry='0.43' transform='rotate%2869 37.0 137.1%29' fill='%23e2b39a' opacity='0.59'/%3E%3Cellipse cx='52.9' cy='205.1' rx='1.04' ry='0.97' transform='rotate%28114 52.9 205.1%29' fill='%23e8c9b5' opacity='0.63'/%3E%3Cellipse cx='66.1' cy='134.6' rx='1.31' ry='0.79' transform='rotate%2833 66.1 134.6%29' fill='%23e8c9b5' opacity='0.74'/%3E%3Cellipse cx='235.0' cy='213.2' rx='1.17' ry='0.61' transform='rotate%28133 235.0 213.2%29' fill='%23a89a8c' opacity='0.65'/%3E%3Cellipse cx='198.3' cy='2.2' rx='0.96' ry='0.83' transform='rotate%2837 198.3 2.2%29' fill='%23e8c9b5' opacity='0.68'/%3E%3Cellipse cx='83.6' cy='183.9' rx='0.80' ry='0.72' transform='rotate%28163 83.6 183.9%29' fill='%23b98a6a' opacity='0.56'/%3E%3Cellipse cx='206.9' cy='166.8' rx='1.04' ry='0.51' transform='rotate%28151 206.9 166.8%29' fill='%23e2b39a' opacity='0.48'/%3E%3Cellipse cx='231.5' cy='108.6' rx='1.29' ry='1.20' transform='rotate%286 231.5 108.6%29' fill='%23a89a8c' opacity='0.54'/%3E%3Cellipse cx='158.0' cy='5.1' rx='1.42' ry='0.83' transform='rotate%28156 158.0 5.1%29' fill='%23e2b39a' opacity='0.76'/%3E%3Cellipse cx='41.2' cy='191.7' rx='0.59' ry='0.45' transform='rotate%28177 41.2 191.7%29' fill='%23b98a6a' opacity='0.65'/%3E%3Cellipse cx='199.7' cy='58.5' rx='1.07' ry='0.51' transform='rotate%2891 199.7 58.5%29' fill='%23a89a8c' opacity='0.65'/%3E%3Cellipse cx='65.1' cy='75.1' rx='1.63' ry='0.79' transform='rotate%28169 65.1 75.1%29' fill='%23c79a73' opacity='0.72'/%3E%3Cellipse cx='52.5' cy='192.1' rx='1.51' ry='1.23' transform='rotate%28154 52.5 192.1%29' fill='%23d6bf9f' opacity='0.59'/%3E%3Cellipse cx='27.0' cy='239.4' rx='0.51' ry='0.42' transform='rotate%2843 27.0 239.4%29' fill='%23e2b39a' opacity='0.50'/%3E%3Cellipse cx='177.2' cy='30.8' rx='0.65' ry='0.42' transform='rotate%28175 177.2 30.8%29' fill='%23c79a73' opacity='0.61'/%3E%3Cellipse cx='210.4' cy='57.7' rx='0.80' ry='0.55' transform='rotate%28151 210.4 57.7%29' fill='%23d6bf9f' opacity='0.77'/%3E%3Cellipse cx='8.6' cy='40.0' rx='1.51' ry='0.65' transform='rotate%281 8.6 40.0%29' fill='%23a89a8c' opacity='0.47'/%3E%3Cellipse cx='126.2' cy='177.2' rx='0.58' ry='0.40' transform='rotate%28117 126.2 177.2%29' fill='%23d6bf9f' opacity='0.73'/%3E%3Cellipse cx='153.7' cy='167.5' rx='0.55' ry='0.44' transform='rotate%28160 153.7 167.5%29' fill='%23c79a73' opacity='0.49'/%3E%3Cellipse cx='153.5' cy='76.5' rx='1.01' ry='0.72' transform='rotate%28158 153.5 76.5%29' fill='%23e2b39a' opacity='0.72'/%3E%3C/svg%3E");
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: #ededed;
+      background: #e4e0d8;
       color: var(--ink);
       font-family: var(--font-body);
       font-weight: 300;
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
     }
-    main { max-width: 430px; margin: 0 auto; background: var(--white); min-height: 100vh; overflow: hidden; }
+    main { max-width: 430px; margin: 0 auto; background: var(--speckle), var(--paper); min-height: 100vh; overflow: hidden; }
     section { padding: 72px 28px; text-align: center; }
     section + section { border-top: 1px solid var(--line); }
     h2 { margin-bottom: 28px; font-weight: 400; display: grid; gap: 2px; }
-    h2 .script { font-family: var(--font-en); font-size: 20px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1.3; color: var(--blue); }
+    h2 .script { font-family: var(--font-display); font-size: 22px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; line-height: 1.3; color: var(--brown); }
     h2 small { font-family: var(--font-en); font-size: 10px; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; }
     .muted { color: var(--muted); font-size: 14px; }
 
     /* ---------- 표지 ---------- */
-    .cover { position: relative; padding: 76px 24px 56px; }
-    /* 사진은 꽉 채우지 않고 오른쪽으로 살짝 치우치게, 왼쪽 여백엔 세로 글씨 */
-    .cover-photo {
-      position: relative; width: 76%; margin-left: 17%; aspect-ratio: 3 / 4;
-      background: linear-gradient(160deg, #eceef3, #d5d9e3);
-      /* 네 가장자리를 흰 바탕으로 번지게 해서 각진 느낌을 없앰 */
+    .cover { position: relative; padding: 56px 24px 40px; }
+    .cover-date, .cover-names {
+      font-family: var(--font-en); font-stretch: 75%; font-weight: 500;
+      font-size: 11px; letter-spacing: .08em; color: var(--brown);
+    }
+    .cover-title {
+      position: relative; margin-top: 30px;
+      font-family: var(--font-display); font-weight: 800; color: var(--brown);
+      font-size: clamp(34px, 10.5vw, 46px); line-height: 1.02; letter-spacing: .01em; text-transform: uppercase;
+    }
+    .cover-title span { display: block; }
+    .cover-title .l1 { transform: rotate(1.5deg); }
+    .cover-title .l3 { transform: rotate(-1deg); }
+    /* 마지막 줄은 글자마다 기울여 아치처럼 휘게 함(JS에서 글자 단위로 나눔) */
+    .cover-title .arc b { display: inline-block; font-weight: inherit; }
+    /* 누끼 사진이 제목 마지막 줄을 살짝 덮도록 위로 끌어올림 */
+    .cover-photo { position: relative; z-index: 1; margin: -.9em auto 0; width: 88%; font-size: clamp(34px, 10.5vw, 46px); }
+    .cover-photo img { width: 100%; display: block; }
+    /* 셀카라 아래가 잘려 있어서 아래쪽만 종이로 번지게 함 */
+    .cover-photo.cutout img {
+      -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent);
+      mask-image: linear-gradient(to bottom, #000 82%, transparent);
+    }
+    /* 누끼 파일이 없으면 원본 사진을 네 가장자리가 번지는 사각형으로 보여줌 */
+    .cover-photo.framed { margin-top: 20px; }  /* 사각형 사진은 제목을 가리지 않게 띄움 */
+    .cover-photo.framed img {
+      aspect-ratio: 3 / 4; object-fit: cover;
       --fade: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
               linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
       -webkit-mask-image: var(--fade); -webkit-mask-composite: source-in;
       mask-image: var(--fade); mask-composite: intersect;
     }
-    .cover-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .cover-title {
-      position: absolute; left: 0; right: 0; top: 24px; z-index: 1;
-      font-family: var(--font-hand); font-weight: 400; color: var(--blue);
-      font-size: clamp(60px, 19vw, 84px); line-height: 1; transform: rotate(-5deg);
-      /* 가는 손글씨를 붓펜처럼 굵게 보이게 함 */
-      -webkit-text-stroke: 1.4px currentColor;
-    }
-    .cover-title span { display: block; }
-    .cover-title span + span { padding-left: 24%; margin-top: -.22em; }
-    .cover-side {
-      position: absolute; left: 22px; top: 50%;
-      writing-mode: vertical-rl; transform: rotate(180deg);
-      font-family: var(--font-en); font-weight: 600; font-size: 12px; letter-spacing: .14em; color: var(--blue);
-    }
-    .cover-date {
-      margin-top: 28px; font-family: var(--font-en); font-weight: 500;
-      font-size: 22px; letter-spacing: .06em; color: var(--blue);
-    }
-    .cover-rule { display: block; width: 1px; height: 52px; margin: 14px auto; background: var(--blue); }
-    .cover-names { font-family: var(--font-hand); font-size: 42px; line-height: 1.1; color: var(--blue); -webkit-text-stroke: .7px currentColor; }
+    .cover-names { margin-top: 18px; }
 
     /* ---------- 본문 ---------- */
     .names { font-family: var(--font-serif); font-size: 20px; letter-spacing: .1em; }
-    .names span { font-family: var(--font-en); color: var(--blue); font-size: 16px; margin: 0 10px; letter-spacing: 0; }
+    .names span { font-family: var(--font-en); color: var(--brown); font-size: 16px; margin: 0 10px; letter-spacing: 0; }
     .when { margin: 4px 0 40px; color: var(--muted); font-size: 13px; }
     .greeting p { white-space: pre-line; font-size: 14px; }
     .parents { margin-top: 36px; font-size: 14px; display: grid; gap: 2px; }
@@ -91,10 +94,10 @@
     .calendar th { color: var(--muted); font-weight: 400; padding: 6px 0; font-family: var(--font-body); }
     .calendar td { padding: 3px 0; }
     .calendar td span { display: inline-block; width: 34px; height: 34px; line-height: 34px; }
-    .calendar .sun { color: var(--blue); }
-    .calendar .day-on span { border-radius: 50%; background: var(--blue); color: var(--white); font-weight: 500; }
+    .calendar .sun { color: var(--brown); }
+    .calendar .day-on span { border-radius: 50%; background: var(--brown); color: var(--white); font-weight: 500; }
     .dday { margin-top: 28px; font-size: 14px; }
-    .dday b { color: var(--blue); font-weight: 500; }
+    .dday b { color: var(--brown); font-weight: 500; }
 
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
     .gallery img, .gallery .ph {
@@ -117,18 +120,18 @@
       text-decoration: none; cursor: pointer;
     }
     .btn:active { background: var(--soft); }
-    .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-    .btn.primary { background: var(--blue); border-color: var(--blue); color: var(--white); }
+    .btn:focus-visible { outline: 2px solid var(--brown); outline-offset: 2px; }
+    .btn.primary { background: var(--brown); border-color: var(--brown); color: var(--white); }
     .map {
       width: 100%; height: 260px; margin-top: 24px; border: 1px solid var(--line);
-      background: var(--blue-light); display: grid; place-items: center; text-align: center;
+      background: var(--brown-light); display: grid; place-items: center; text-align: center;
     }
     .map-fallback { display: grid; gap: 6px; color: var(--ink); text-decoration: none; font-size: 14px; }
-    .map-fallback b { font-family: var(--font-en); color: var(--blue); font-size: 14px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1; }
+    .map-fallback b { font-family: var(--font-en); color: var(--brown); font-size: 14px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1; }
     .map-fallback span { text-decoration: underline; text-underline-offset: 3px; }
     .transport { text-align: left; margin-top: 28px; font-size: 14px; }
     .transport dd { white-space: pre-line; }
-    .transport dt { color: var(--blue); font-weight: 500; margin-top: 14px; }
+    .transport dt { color: var(--brown); font-weight: 500; margin-top: 14px; }
 
     .account-group { text-align: left; margin-top: 12px; border: 1px solid var(--line); }
     .account-group summary { padding: 14px 16px; cursor: pointer; list-style: none; font-size: 15px; font-weight: 400; }
@@ -141,13 +144,13 @@
     .account .btn { flex: none; padding: 6px 12px; font-size: 13px; }
 
     .share { display: flex; gap: 8px; }
-    footer { padding: 48px 28px 40px; text-align: center; background: var(--blue); color: #c9d2ee; }
-    footer .script { font-family: var(--font-en); font-size: 18px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--white); line-height: 1.4; }
+    footer { padding: 48px 28px 40px; text-align: center; background: var(--brown); color: #cdbfae; }
+    footer .script { font-family: var(--font-display); font-size: 22px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--paper); line-height: 1.4; }
     footer p:not(.script) { font-family: var(--font-en); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px; }
 
     .toast {
       position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
-      background: var(--blue); color: var(--white); padding: 10px 18px;
+      background: var(--brown); color: var(--white); padding: 10px 18px;
       font-size: 14px; opacity: 0; transition: opacity .25s; pointer-events: none;
     }
     .toast.show { opacity: 1; }
@@ -162,11 +165,9 @@
 <body>
 <main>
   <section class="cover" aria-label="청첩장 표지">
-    <h1 class="cover-title"><span>Wedding</span><span>Invitation</span></h1>
-    <div class="cover-photo"><img id="heroPhoto" alt=""></div>
-    <p class="cover-side">HAPPY WEDDING</p>
     <p class="cover-date" id="coverDate"></p>
-    <span class="cover-rule"></span>
+    <h1 class="cover-title" id="coverTitle"></h1>
+    <div class="cover-photo" id="coverPhoto"><img id="heroPhoto" alt=""></div>
     <p class="cover-names" id="coverNames"></p>
   </section>
 
@@ -248,6 +249,10 @@
     greeting:
       "서로 다른 길을 걸어온 두 사람이\n이제 같은 길을 함께 걸어가려 합니다.\n\n" +
       "저희의 새로운 시작을\n축복해 주시면 감사하겠습니다.",
+    // 표지 제목. 한 줄씩 배열로, 마지막 줄은 아치처럼 휘어집니다
+    coverTitle: ["You are", "invited", "to our", "wedding"],
+    // 표지 사진: 배경을 지운 PNG가 있으면 그걸 쓰고, 없으면 heroPhoto를 사각형으로 씀
+    heroCutout: "../images/main-cutout.png",
     heroPhoto: "../images/main.jpg",   // 사진은 상위 images/ 폴더를 같이 씀
     gallery: ["../images/childhood.jpg", "../images/main.jpg"],  // 사진 추가: 상위 images/ 폴더에 넣고 여기에 파일명 추가
     transport: [
@@ -316,12 +321,34 @@
   }
 
   function renderPoster() {
+    const box = $("coverPhoto");
     const photo = $("heroPhoto");
-    photo.src = CONFIG.heroPhoto;
-    photo.onerror = () => photo.removeAttribute("src");
+    const sources = [[CONFIG.heroCutout, "cutout"], [CONFIG.heroPhoto, "framed"]].filter(([src]) => src);
+    const tryNext = () => {
+      const next = sources.shift();
+      if (!next) return box.remove();
+      box.className = `cover-photo ${next[1]}`;
+      photo.src = next[0];
+    };
+    photo.onerror = tryNext;
+    tryNext();
 
-    $("coverDate").textContent = `${dotDate} ${enTime(wedding)}`;
-    $("coverNames").textContent = enCouple;
+    const lines = CONFIG.coverTitle;
+    lines.forEach((text, i) => {
+      const isLast = i === lines.length - 1;
+      if (!isLast) return $("coverTitle").append(el("span", { className: `l${i + 1}`, textContent: text }));
+      // 가운데에서 멀수록 더 기울이고 아래로 내려 아치 모양을 만듦
+      const chars = [...text];
+      const mid = (chars.length - 1) / 2;
+      const letters = chars.map((ch, k) => {
+        const t = (k - mid) / (mid || 1);
+        return el("b", { textContent: ch, style: `transform: translateY(${(t * t * 0.18).toFixed(3)}em) rotate(${(t * 12).toFixed(1)}deg)` });
+      });
+      $("coverTitle").append(el("span", { className: "arc" }, letters));
+    });
+
+    $("coverDate").textContent = dotDate;
+    $("coverNames").textContent = enCouple.toUpperCase();
     $("footNote").textContent = `${enCouple} · ${dotDate}`;
   }
 
