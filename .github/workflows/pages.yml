@@ -1,0 +1,44 @@
+# main에 올리면 GitHub Pages로 배포.
+# 지도 API 키는 레포에 넣지 않고, 배포할 때만 Secret 값으로 자리표시를 바꿔 넣음.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Insert map API key
+        env:
+          NAVER_MAP_CLIENT_ID: ${{ secrets.NAVER_MAP_CLIENT_ID }}
+        run: |
+          if [ -z "$NAVER_MAP_CLIENT_ID" ]; then
+            echo "NAVER_MAP_CLIENT_ID secret is empty; map will show the link card instead."
+          fi
+          sed -i "s|__NAVER_MAP_CLIENT_ID__|${NAVER_MAP_CLIENT_ID}|g" index.html
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

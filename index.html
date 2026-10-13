@@ -276,7 +276,8 @@
       lng: 127.14045,
     },
     // 네이버 지도 API 키(Client ID). 비워두면 지도 대신 "네이버 지도에서 보기" 카드가 나옵니다
-    naverMapClientId: "",
+    // 키는 레포에 넣지 않음: 배포 때 GitHub Secret(NAVER_MAP_CLIENT_ID)이 이 자리에 들어감
+    naverMapClientId: "__NAVER_MAP_CLIENT_ID__",
     // 카카오 지도 JavaScript 키. 네이버 키가 비어 있을 때만 사용합니다
     kakaoMapAppKey: "",
     greeting:
@@ -502,10 +503,13 @@
       }, [el("b", { textContent: "Map" }), el("span", { textContent: "네이버 지도에서 위치 보기" })]));
     };
     if (!lat || !lng) return showFallback();
-    if (CONFIG.naverMapClientId) return loadNaverMap(box, showFallback);
+    if (naverKey()) return loadNaverMap(box, showFallback);
     if (CONFIG.kakaoMapAppKey) return loadKakaoMap(box, showFallback);
     showFallback();
   }
+
+  // 배포 전 자리표시(__...__)가 그대로면 키가 없는 것으로 봄 (로컬에서 열 때 등)
+  const naverKey = () => (CONFIG.naverMapClientId.startsWith("__") ? "" : CONFIG.naverMapClientId);
 
   function loadScript(src, onload, onerror) {
     const script = el("script", { src });
@@ -519,7 +523,7 @@
     // 키가 틀렸거나 도메인이 등록되지 않았을 때 네이버가 이 함수를 부름
     window.navermap_authFailure = showFallback;
     loadScript(
-      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(CONFIG.naverMapClientId)}`,
+      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(naverKey())}`,
       () => {
         if (!window.naver?.maps) return showFallback();
         const position = new naver.maps.LatLng(lat, lng);
