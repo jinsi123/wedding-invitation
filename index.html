@@ -93,6 +93,9 @@
     /* 사진 없이 검은 표지일 때 */
     .poster.no-photo { background: #000; }
     .poster.no-photo .shade, .poster.no-photo .poster-front { display: none; }
+    /* 검은 표지에선 날짜와 제목을 화면 가운데쯤으로 */
+    .poster.no-photo .poster-date { top: 41%; }
+    .poster.no-photo .poster-title { top: 47.5%; }
 
     /* ---------- 본문 ---------- */
     .names { font-family: var(--font-serif); font-size: 20px; letter-spacing: .1em; }
@@ -289,8 +292,9 @@
       "저희의 새로운 시작을\n축복해 주시면 감사하겠습니다.",
     // 표지 사진. 비워두면 검은 표지.
     // heroFront는 사진 속 인물만 남긴 투명 PNG로, 제목 위에 겹쳐서 글자가 인물 뒤에 있는 것처럼 보이게 함
-    heroPhoto: "images/cover-illustration-bg.jpg",
-    heroFront: "images/cover-illustration-front.png",
+    // 예: heroPhoto "images/cover-illustration-bg.jpg", heroFront "images/cover-illustration-front.png"
+    heroPhoto: "",
+    heroFront: "",
     gallery: ["images/childhood.jpg", "images/main.jpg"],  // 사진 추가: images/ 폴더에 넣고 여기에 파일명 추가
     transport: [
       { label: "지하철", text: "8호선·경의중앙선 구리역 하차\n8호선 7번 출구 또는 경의중앙선 1번 출구에서 도보 약 5분" },
