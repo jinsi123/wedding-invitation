@@ -43,15 +43,17 @@
       color: var(--ink);
       font-family: var(--font-body);
       font-weight: 400;
+      font-size: 16px;
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
     }
     main { max-width: 430px; margin: 0 auto; background: var(--white); min-height: 100vh; overflow: hidden; }
-    section { padding: 64px 28px; text-align: center; }
-    h2 { margin-bottom: 28px; font-weight: 400; display: grid; gap: 4px; }
-    h2 .script { font-family: var(--font-en); font-size: 13px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; line-height: 1.3; color: var(--accent); }
-    h2 small { font-family: var(--font-body); font-size: 17px; font-weight: 400; color: var(--ink); letter-spacing: .02em; }
-    .muted { color: var(--muted); font-size: 14px; }
+    /* 크기·여백은 레퍼런스(hw-dd-weddingday) 수준: 섹션 위아래 96px, 섹션 제목 24px, 본문 16px */
+    section { padding: 96px 24px; text-align: center; }
+    h2 { margin-bottom: 44px; font-weight: 400; display: grid; gap: 6px; }
+    h2 .script { font-family: var(--font-en); font-size: 14px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; line-height: 1.3; color: var(--accent); }
+    h2 small { font-family: var(--font-body); font-size: 24px; font-weight: 500; color: var(--ink); letter-spacing: -.01em; }
+    .muted { color: var(--muted); font-size: 15px; }
 
     /* ---------- 표지: 영화 포스터식. 큰 세리프 제목이 두 사람 "뒤"에 있는 입체 구성 ----------
        쌓는 순서: 배경 그림 → 어둡게 → 날짜·제목 → 인물 층(투명 PNG) → 하단 이름 */
@@ -59,7 +61,9 @@
       /* 72 : 30 비율 유지 */
       --title-size: min(72px, 20vw);
       --date-size: min(22px, 6.1vw);
-      position: relative; aspect-ratio: 2 / 3; padding: 0; color: var(--white); overflow: hidden; background: #1c241b;
+      /* 휴대폰 화면 높이를 꽉 채움 (dvh: 주소창이 나타났다 사라져도 맞게) */
+      position: relative; height: 100vh; height: 100dvh; min-height: 560px;
+      padding: 0; color: var(--white); overflow: hidden; background: #1c241b;
     }
     /* 배경과 인물 층은 같은 크기 그림이라 같은 object-fit이면 정확히 겹침 */
     .poster-photo, .poster-front {
@@ -104,21 +108,24 @@
     .poster.no-photo .shade, .poster.no-photo .poster-front { display: none; }
 
     /* ---------- 본문 ---------- */
-    .names { font-family: var(--font-serif); font-size: 20px; letter-spacing: .1em; }
-    .names span { font-family: var(--font-en); color: var(--accent); font-size: 16px; margin: 0 10px; letter-spacing: 0; }
-    .when { margin: 4px 0 40px; color: var(--muted); font-size: 13px; }
-    .greeting p { white-space: pre-line; font-size: 14px; }
-    .parents { margin-top: 36px; font-size: 14px; display: grid; gap: 2px; }
-    .parents b { font-family: var(--font-serif); font-weight: 700; }
+    .names { font-family: var(--font-serif); font-size: 24px; letter-spacing: .1em; }
+    .names span { font-family: var(--font-en); color: var(--accent); font-size: 18px; margin: 0 10px; letter-spacing: 0; }
+    .when { margin: 6px 0 56px; color: var(--muted); font-size: 15px; }
+    .greeting p { white-space: pre-line; font-size: 16px; line-height: 2; }
+    /* 부모님: "김남흥 · 정미경의 아들" 다음 줄에 이름 */
+    .parents { margin-top: 48px; display: grid; gap: 28px; }
+    .parent { display: grid; gap: 2px; }
+    .parent-of { color: var(--muted); font-size: 15px; }
+    .parent b { font-family: var(--font-serif); font-weight: 500; font-size: 22px; letter-spacing: .12em; color: var(--ink); }
 
     /* table-layout: fixed 없으면 예식일 동그라미가 있는 열만 넓어짐 */
-    .calendar { width: 100%; max-width: 300px; margin: 24px auto 0; border-collapse: collapse; font-size: 14px; table-layout: fixed; font-family: var(--font-en); }
-    .calendar th { color: var(--muted); font-weight: 400; padding: 6px 0; font-family: var(--font-body); }
-    .calendar td { padding: 3px 0; }
-    .calendar td span { display: inline-block; width: 34px; height: 34px; line-height: 34px; }
+    .calendar { width: 100%; max-width: 340px; margin: 28px auto 0; border-collapse: collapse; font-size: 16px; table-layout: fixed; font-family: var(--font-en); }
+    .calendar th { color: var(--muted); font-weight: 400; padding: 8px 0; font-family: var(--font-body); }
+    .calendar td { padding: 4px 0; }
+    .calendar td span { display: inline-block; width: 40px; height: 40px; line-height: 40px; }
     .calendar .sun { color: var(--accent); }
     .calendar .day-on span { border-radius: 50%; background: var(--accent); color: var(--white); font-weight: 500; }
-    .dday { margin-top: 28px; font-size: 14px; }
+    .dday { margin-top: 32px; font-size: 16px; }
     .dday b { color: var(--accent); font-weight: 500; }
 
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
@@ -134,11 +141,11 @@
     .lightbox.open { display: flex; }
     .lightbox img { max-width: 100%; max-height: 90vh; }
 
-    .venue-name { font-family: var(--font-serif); font-size: 19px; }
+    .venue-name { font-family: var(--font-serif); font-size: 22px; font-weight: 500; }
     .map-links { display: flex; gap: 8px; margin-top: 24px; }
     .btn {
-      flex: 1; padding: 12px 8px; border: 1px solid #d9d9d9; border-radius: 10px;
-      background: var(--white); color: var(--ink); font: inherit; font-size: 14px; font-weight: 400;
+      flex: 1; padding: 14px 8px; border: 1px solid #d9d9d9; border-radius: 10px;
+      background: var(--white); color: var(--ink); font: inherit; font-size: 15px; font-weight: 400;
       text-decoration: none; cursor: pointer;
     }
     .btn:active { background: var(--soft); }
@@ -151,17 +158,17 @@
     .map-fallback { display: grid; gap: 6px; color: var(--ink); text-decoration: none; font-size: 14px; }
     .map-fallback b { font-family: var(--font-en); color: var(--accent); font-size: 14px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1; }
     .map-fallback span { text-decoration: underline; text-underline-offset: 3px; }
-    .transport { text-align: left; margin-top: 28px; font-size: 14px; }
+    .transport { text-align: left; margin-top: 32px; font-size: 15px; }
     .transport dd { white-space: pre-line; }
     .transport dt { color: var(--accent); font-weight: 500; margin-top: 14px; }
 
     .account-group { text-align: left; margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-    .account-group summary { padding: 14px 16px; cursor: pointer; list-style: none; font-size: 15px; font-weight: 400; }
+    .account-group summary { padding: 16px 18px; cursor: pointer; list-style: none; font-size: 16px; font-weight: 400; }
     .account-group summary::after { content: "＋"; float: right; color: var(--muted); }
     .account-group[open] summary::after { content: "－"; }
     .account {
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
-      padding: 12px 16px; border-top: 1px solid var(--line); font-size: 14px;
+      padding: 14px 18px; border-top: 1px solid var(--line); font-size: 15px;
     }
     .account .btn { flex: none; padding: 6px 12px; font-size: 13px; }
 
@@ -177,10 +184,15 @@
     }
     .toast.show { opacity: 1; }
 
-    .fade { opacity: 0; transform: translateY(16px); transition: opacity .8s, transform .8s; }
-    .fade.in { opacity: 1; transform: none; }
+    /* 스크롤해서 화면에 들어온 요소만 아래에서 떠오르며 나타남 (레퍼런스와 같은 값).
+       섹션 안 요소마다 따로 적용해서, 위로 올려야 다음 내용이 차례로 드러남 */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1);
+    }
+    .fade-up.is-visible { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
-      .fade { opacity: 1; transform: none; transition: none; }
+      .fade-up { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -438,8 +450,12 @@
     $("heroNames").append(CONFIG.groom.short, el("span", { textContent: "&" }), CONFIG.bride.short);
     $("heroDate").textContent = formatDate(wedding);
     $("greeting").textContent = CONFIG.greeting;
-    const line = (p) => el("p", {}, [`${p.father} · ${p.mother} 의 ${p.order} `, el("b", { textContent: p.name })]);
-    $("parents").append(line(CONFIG.groom), line(CONFIG.bride));
+    // "김남흥 · 정미경의 아들" 다음 줄에 "김병준"
+    const block = (p) => el("div", { className: "parent" }, [
+      el("p", { className: "parent-of", textContent: `${p.father} · ${p.mother}의 ${p.order}` }),
+      el("b", { textContent: p.name }),
+    ]);
+    $("parents").append(block(CONFIG.groom), block(CONFIG.bride));
   }
 
   function renderCalendar() {
@@ -602,11 +618,21 @@
     };
   }
 
+  // 섹션 통째로가 아니라 섹션 안 요소마다 따로 나타나게 함.
+  // 부모님 두 줄처럼 묶음 안 요소도 하나씩 떠오르도록 #parents는 안쪽까지 나눔
   function setupFadeIn() {
+    const targets = [];
+    document.querySelectorAll("section.fade").forEach((section) => {
+      section.classList.remove("fade");
+      [...section.children].forEach((child) => {
+        if (child.id === "parents") targets.push(...child.children);
+        else targets.push(child);
+      });
+    });
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
-    }), { threshold: 0.15 });
-    document.querySelectorAll(".fade").forEach((s) => io.observe(s));
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+    }), { threshold: 0.18, rootMargin: "0px 0px -40px 0px" });
+    targets.forEach((t) => { t.classList.add("fade-up"); io.observe(t); });
   }
 
   renderPoster();
