@@ -108,12 +108,21 @@
     .poster.no-photo .shade, .poster.no-photo .poster-front { display: none; }
 
     /* ---------- 본문 ---------- */
-    .names { font-family: var(--font-serif); font-size: 24px; letter-spacing: .1em; }
-    .names span { font-family: var(--font-en); color: var(--accent); font-size: 18px; margin: 0 10px; letter-spacing: 0; }
-    .when { margin: 6px 0 56px; color: var(--muted); font-size: 15px; }
     .greeting p { white-space: pre-line; font-size: 16px; line-height: 2; }
     /* 부모님: "김남흥 · 정미경의 아들" 다음 줄에 이름 */
-    .parents { margin-top: 48px; display: grid; gap: 28px; }
+    .parents { margin-top: 48px; display: grid; gap: 18px; justify-items: center; }
+    /* 두 집안 사이의 은은한 은색 &: 은색 그라데이션 위로 빛이 천천히 지나감 */
+    .parents-amp {
+      font-family: var(--font-en); font-size: 30px; font-weight: 300; line-height: 1;
+      background: linear-gradient(110deg, #8c9198 0%, #8c9198 38%, #eef0f2 50%, #8c9198 62%, #8c9198 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: silver-shine 4.5s ease-in-out infinite;
+    }
+    @keyframes silver-shine {
+      0% { background-position: 100% 0; }
+      60%, 100% { background-position: 0% 0; }
+    }
     .parent { display: grid; gap: 2px; }
     .parent-of { color: var(--muted); font-size: 15px; }
     .parent b { font-family: var(--font-serif); font-weight: 500; font-size: 22px; letter-spacing: .12em; color: var(--ink); }
@@ -193,6 +202,7 @@
     .fade-up.is-visible { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
       .fade-up { opacity: 1; transform: none; transition: none; }
+      .parents-amp { animation: none; }
     }
   </style>
 </head>
@@ -227,9 +237,7 @@
   </section>
 
   <section class="greeting fade">
-    <p class="names" id="heroNames"></p>
-    <p class="when" id="heroDate"></p>
-    <h2><span class="script">Invitation</span><small>초대합니다</small></h2>
+    <h2><small>초대합니다</small></h2>
     <p id="greeting"></p>
     <div class="parents" id="parents"></div>
   </section>
@@ -447,15 +455,14 @@
   }
 
   function renderGreeting() {
-    $("heroNames").append(CONFIG.groom.short, el("span", { textContent: "&" }), CONFIG.bride.short);
-    $("heroDate").textContent = formatDate(wedding);
     $("greeting").textContent = CONFIG.greeting;
     // "김남흥 · 정미경의 아들" 다음 줄에 "김병준"
     const block = (p) => el("div", { className: "parent" }, [
       el("p", { className: "parent-of", textContent: `${p.father} · ${p.mother}의 ${p.order}` }),
       el("b", { textContent: p.name }),
     ]);
-    $("parents").append(block(CONFIG.groom), block(CONFIG.bride));
+    const amp = el("span", { className: "parents-amp", textContent: "&", ariaHidden: "true" });
+    $("parents").append(block(CONFIG.groom), amp, block(CONFIG.bride));
   }
 
   function renderCalendar() {
