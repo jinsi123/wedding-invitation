@@ -32,7 +32,8 @@ jobs:
           if [ -z "$NAVER_MAP_CLIENT_ID" ]; then
             echo "NAVER_MAP_CLIENT_ID secret is empty; map will show the link card instead."
           fi
-          sed -i "s|__NAVER_MAP_CLIENT_ID__|${NAVER_MAP_CLIENT_ID}|g" index.html
+          # 루트 index.html뿐 아니라 하위 버전 폴더(yellow-version/ 등)에도 같은 키를 넣음
+          grep -rl --include='*.html' '__NAVER_MAP_CLIENT_ID__' . | xargs -r sed -i "s|__NAVER_MAP_CLIENT_ID__|${NAVER_MAP_CLIENT_ID}|g"
 
       - uses: actions/configure-pages@v5
 
