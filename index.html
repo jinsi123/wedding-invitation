@@ -10,7 +10,7 @@
   <meta property="og:image" content="https://jinsi123.github.io/wedding-invitation/images/main.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     /* 밝고 산뜻한 화이트 무드: 사진 위 흰 손글씨 + 흰 별·꽃 낙서, 본문은 흰 바탕에 부드러운 회색 글씨.
        포인트 색(세이지 그린)은 달력 동그라미, 숫자, 라벨 같은 작은 강조에만 씀 */
@@ -24,17 +24,25 @@
       --page: #f1f1ee;         /* 휴대폰보다 넓은 화면의 바깥 여백 */
       --green: #5c7756;        /* 세이지 그린: 흰 바탕 위 작은 글씨도 읽히는 진하기 */
       --green-light: #eef2ec;
-      --font-hand: "Sacramento", cursive;
+      /* 영문 손글씨: Lucida Handwriting은 휴대폰에 없어서 비슷하게 덜 흘려 쓴 Kalam 사용 */
+      --font-hand: "Kalam", "Lucida Handwriting", cursive;
       --font-en: "Archivo", "Helvetica Neue", sans-serif;
-      --font-serif: "Nanum Myeongjo", serif;
-      --font-body: "Noto Sans KR", sans-serif;
+      --font-serif: "GyeonggiBatang", "Nanum Myeongjo", serif;
+      --font-body: "GyeonggiBatang", "Noto Sans KR", serif;
+    }
+    /* 경기천년바탕 Regular (눈누 배포 웹폰트) */
+    @font-face {
+      font-family: "GyeonggiBatang";
+      src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff") format("woff");
+      font-weight: normal;
+      font-display: swap;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--page);
       color: var(--ink);
       font-family: var(--font-body);
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
     }
@@ -60,14 +68,14 @@
     .poster-title {
       /* 세 줄이 머리 위(세로 약 20%)에서 끝나도록 크기를 맞춤 */
       position: absolute; left: 0; right: 0; top: 3%;
-      font-family: var(--font-hand); font-weight: 400; font-size: clamp(42px, 12.5vw, 52px); line-height: .86;
+      font-family: var(--font-hand); font-weight: 300; font-size: clamp(42px, 12.5vw, 52px); line-height: 1.05;
       text-shadow: 0 1px 10px rgba(0, 0, 0, .18);
     }
     .poster-title span { display: block; white-space: nowrap; }
     /* 레퍼런스처럼 세 줄을 좌우로 엇갈려 배치 */
-    .poster-title .l1 { padding-left: 30%; }
-    .poster-title .l2 { padding-left: 9%; }
-    .poster-title .l3 { padding-left: 46%; }
+    .poster-title .l1 { padding-left: 14%; }
+    .poster-title .l2 { padding-left: 50%; }
+    .poster-title .l3 { padding-left: 30%; }
     .sparkles { position: absolute; inset: 0; pointer-events: none; color: var(--white); }
     .sparkles svg { position: absolute; filter: drop-shadow(0 0 3px rgba(255,255,255,.6)); }
     .poster-names {
@@ -142,7 +150,7 @@
 
     .share { display: flex; gap: 8px; }
     footer { padding: 48px 28px 40px; text-align: center; background: var(--soft); color: var(--muted); }
-    footer .script { font-family: var(--font-hand); font-size: 40px; color: var(--ink); line-height: 1.2; }
+    footer .script { font-family: var(--font-hand); font-weight: 300; font-size: 34px; color: var(--ink); line-height: 1.2; }
     footer p:not(.script) { font-family: var(--font-en); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px; }
 
     .toast {
@@ -254,7 +262,7 @@
     bride: { name: "진시연", short: "시연", en: "Siyeon", father: "진호성", mother: "박순화", order: "딸" },
     date: "2027-10-30T11:00:00",   // 예식 일시 (24시간제)
     // 표지 손글씨 문구. 세 줄까지, 줄마다 좌우로 엇갈려 배치됩니다
-    posterTitle: ["Together", "from this", "Day"],
+    posterTitle: ["Wedding", "Day"],
     // address를 비워두면 "추후 안내"로 표시됩니다
     venue: {
       name: "아르비아웨딩홀",
