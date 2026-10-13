@@ -163,7 +163,17 @@
     .calendar td { padding: 4px 0; }
     .calendar td span { display: inline-block; width: 40px; height: 40px; line-height: 40px; }
     .calendar .sun { color: var(--accent); }
-    .calendar .day-on span { border-radius: 50%; background: var(--accent); color: var(--white); font-weight: 500; }
+    .calendar .day-on span { position: relative; border-radius: 50%; background: var(--accent); color: var(--white); font-weight: 500; }
+    /* 예식일 바깥의 은색 테두리: 은색 고리 위로 밝은 빛이 원을 따라 천천히 돎.
+       mask로 가운데를 비워 2px 두께의 고리만 남김 */
+    .calendar .day-on span::before {
+      content: ""; position: absolute; inset: -5px; border-radius: 50%; padding: 2px;
+      background: conic-gradient(#8f959c, #f5f6f8 12%, #9aa0a7 26%, #c9cdd2 50%, #f5f6f8 62%, #8f959c 78%, #8f959c);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: ring-spin 5s linear infinite;
+    }
+    @keyframes ring-spin { to { transform: rotate(360deg); } }
     .dday { margin-top: 32px; font-size: 16px; }
     .dday b { color: var(--accent); font-weight: 500; }
 
@@ -238,7 +248,7 @@
     .fade-up.is-visible { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
       .fade-up { opacity: 1; transform: none; transition: none; }
-      .parents-amp, .btn.primary, .scroll-hint i::after { animation: none; }
+      .parents-amp, .btn.primary, .scroll-hint i::after, .calendar .day-on span::before { animation: none; }
     }
   </style>
 </head>
@@ -502,7 +512,9 @@
   }
 
   function renderCalendar() {
-    $("dateLine").textContent = formatDate(wedding);
+    // 한 줄이면 길어서 한눈에 안 들어옴: 날짜 / 시간 두 줄로
+    const [datePart, timePart] = formatDate(wedding).split(/ (?=오[전후] )/);
+    $("dateLine").replaceChildren(datePart, el("br"), timePart);
     const year = wedding.getFullYear();
     const month = wedding.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
