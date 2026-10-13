@@ -77,7 +77,12 @@
     .poster-title .l2 { padding-left: 50%; }
     .poster-title .l3 { padding-left: 30%; }
     .sparkles { position: absolute; inset: 0; pointer-events: none; color: var(--white); }
-    .sparkles svg { position: absolute; filter: drop-shadow(0 0 3px rgba(255,255,255,.6)); }
+    .sparkles svg { position: absolute; filter: drop-shadow(0 0 4px rgba(255,255,255,.35)); }
+    /* 사진 없이 검은 표지일 때: 가운데 쪽으로 글씨를 모음 */
+    .poster.no-photo { background: #000; }
+    .poster.no-photo .shade { display: none; }
+    .poster.no-photo .poster-title { top: 22%; text-shadow: none; }
+    .poster.no-photo .poster-names { bottom: 14%; text-shadow: none; }
     .poster-names {
       position: absolute; left: 0; right: 0; bottom: 6.5%;
       display: grid; gap: 2px; text-shadow: 0 1px 8px rgba(0, 0, 0, .25);
@@ -169,19 +174,16 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <!-- 표지 낙서: 반짝이는 별과 작은 꽃 -->
-  <symbol id="star" viewBox="0 0 100 100">
-    <path fill="currentColor" d="M50 0 C54 36 64 46 100 50 C64 54 54 64 50 100 C46 64 36 54 0 50 C36 46 46 36 50 0Z"/>
-  </symbol>
-  <symbol id="blossom" viewBox="0 0 100 100">
-    <g fill="currentColor">
-      <circle cx="50" cy="24" r="20"/>
-      <circle cx="75" cy="42" r="20"/>
-      <circle cx="65" cy="72" r="20"/>
-      <circle cx="35" cy="72" r="20"/>
-      <circle cx="25" cy="42" r="20"/>
+  <!-- 표지 눈꽃: 가는 선으로 그린 여섯 갈래 -->
+  <symbol id="flake" viewBox="0 0 100 100">
+    <g stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none">
+      <g id="flakeArm"><path d="M50 50 V8 M50 20 L41 12 M50 20 L59 12 M50 33 L43 27 M50 33 L57 27"/></g>
+      <use href="#flakeArm" transform="rotate(60 50 50)"/>
+      <use href="#flakeArm" transform="rotate(120 50 50)"/>
+      <use href="#flakeArm" transform="rotate(180 50 50)"/>
+      <use href="#flakeArm" transform="rotate(240 50 50)"/>
+      <use href="#flakeArm" transform="rotate(300 50 50)"/>
     </g>
-    <circle cx="50" cy="50" r="9" fill="#f2d98a"/>
   </symbol>
 </svg>
 <main>
@@ -275,10 +277,13 @@
     },
     // 네이버 지도 API 키(Client ID). 비워두면 지도 대신 "네이버 지도에서 보기" 카드가 나옵니다
     naverMapClientId: "",
+    // 카카오 지도 JavaScript 키. 네이버 키가 비어 있을 때만 사용합니다
+    kakaoMapAppKey: "",
     greeting:
       "서로 다른 길을 걸어온 두 사람이\n이제 같은 길을 함께 걸어가려 합니다.\n\n" +
       "저희의 새로운 시작을\n축복해 주시면 감사하겠습니다.",
-    heroPhoto: "images/cover-illustration.jpg",  // 직접 그린 표지 일러스트 (실제 사진 아님, 공개 가능)
+    // 표지 사진. 비워두면 검은 표지. 예: "images/cover-illustration.jpg"(직접 그린 일러스트)
+    heroPhoto: "",
     gallery: ["images/childhood.jpg", "images/main.jpg"],  // 사진 추가: images/ 폴더에 넣고 여기에 파일명 추가
     transport: [
       { label: "지하철", text: "8호선·경의중앙선 구리역 하차\n8호선 7번 출구 또는 경의중앙선 1번 출구에서 도보 약 5분" },
@@ -342,8 +347,13 @@
 
   function renderPoster() {
     const photo = $("heroPhoto");
-    photo.src = CONFIG.heroPhoto;
-    photo.onerror = () => photo.removeAttribute("src");
+    if (CONFIG.heroPhoto) {
+      photo.src = CONFIG.heroPhoto;
+      photo.onerror = () => photo.removeAttribute("src");
+    } else {
+      photo.hidden = true;
+      photo.closest(".poster").classList.add("no-photo");
+    }
 
     CONFIG.posterTitle.forEach((words, i) => {
       $("posterTitle").append(el("span", { className: `l${i + 1}`, textContent: words }));
@@ -358,28 +368,42 @@
     renderSparkles();
   }
 
-  // [모양, 가로%, 세로%, 크기px] - 얼굴(가로 20~86%, 세로 27~50%)과 글씨 자리를 피해 흩뿌림
-  const SPARKLES = [
-    ["star", 6, 40, 14], ["blossom", 12, 49, 12], ["star", 4, 58, 9], ["blossom", 9, 67, 14],
-    ["star", 17, 74, 10], ["star", 91, 36, 12], ["blossom", 93, 46, 10], ["star", 88, 56, 15],
-    ["blossom", 94, 65, 12], ["star", 31, 61, 8], ["blossom", 47, 67, 10], ["star", 62, 71, 12],
-    ["blossom", 77, 60, 9], ["star", 34, 69, 9], ["blossom", 77, 70, 11], ["star", 85, 27, 10],
+  // 표지에 흩뿌리는 연한 눈꽃. 글씨 자리(가로%, 세로% 범위)는 피함
+  const FLAKE_COUNT = 26;
+  const TEXT_ZONES = [
+    { x: [8, 92], y: [20, 46] },   // Wedding Day
+    { x: [18, 82], y: [58, 88] },  // 이름·일시·장소
   ];
-
-  const SPARKLE_SCALE = 1.4;
 
   function renderSparkles() {
     const ns = "http://www.w3.org/2000/svg";
-    SPARKLES.forEach(([shape, x, y, size]) => {
+    // 새로고침해도 같은 자리에 오도록 고정 시드 난수
+    let seed = 1030;
+    const rand = () => ((seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296);
+    const inText = (x, y) => TEXT_ZONES.some((z) => x > z.x[0] && x < z.x[1] && y > z.y[0] && y < z.y[1]);
+
+    // 눈꽃끼리 뭉치지 않게 최소 간격(%)을 둠. 자리를 못 찾으면 시도 횟수 제한으로 멈춤
+    const MIN_GAP = 9;
+    const spots = [];
+    const tooClose = (x, y) => spots.some(([sx, sy]) => Math.hypot(sx - x, (sy - y) * 0.56) < MIN_GAP);
+
+    let placed = 0;
+    for (let tries = 0; placed < FLAKE_COUNT && tries < 2000; tries++) {
+      const x = 2 + rand() * 94;
+      const y = 2 + rand() * 94;
+      if (inText(x, y) || tooClose(x, y)) continue;
+      spots.push([x, y]);
+      const size = Math.round(10 + rand() * 22);
       const svg = document.createElementNS(ns, "svg");
       svg.setAttribute("viewBox", "0 0 100 100");
-      const px = Math.round(size * SPARKLE_SCALE);
-      svg.style.cssText = `left:${x}%;top:${y}%;width:${px}px;height:${px}px`;
+      svg.style.cssText = `left:${x}%;top:${y}%;width:${size}px;height:${size}px;` +
+        `opacity:${(0.25 + rand() * 0.5).toFixed(2)};transform:rotate(${Math.round(rand() * 60)}deg)`;
       const use = document.createElementNS(ns, "use");
-      use.setAttribute("href", `#${shape}`);
+      use.setAttribute("href", "#flake");
       svg.append(use);
       $("sparkles").append(svg);
-    });
+      placed += 1;
+    }
   }
 
   function renderGreeting() {
@@ -477,19 +501,50 @@
         target: "_blank", rel: "noopener",
       }, [el("b", { textContent: "Map" }), el("span", { textContent: "네이버 지도에서 위치 보기" })]));
     };
-    if (!CONFIG.naverMapClientId || !lat || !lng) return showFallback();
+    if (!lat || !lng) return showFallback();
+    if (CONFIG.naverMapClientId) return loadNaverMap(box, showFallback);
+    if (CONFIG.kakaoMapAppKey) return loadKakaoMap(box, showFallback);
+    showFallback();
+  }
 
-    const script = el("script", {
-      src: `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(CONFIG.naverMapClientId)}`,
-    });
-    script.onerror = showFallback;
-    script.onload = () => {
-      if (!window.naver?.maps) return showFallback();
-      const position = new naver.maps.LatLng(lat, lng);
-      const map = new naver.maps.Map(box, { center: position, zoom: 16, scrollWheel: false });
-      new naver.maps.Marker({ position, map, title: name });
-    };
+  function loadScript(src, onload, onerror) {
+    const script = el("script", { src });
+    script.onload = onload;
+    script.onerror = onerror;
     document.head.append(script);
+  }
+
+  function loadNaverMap(box, showFallback) {
+    const { name, lat, lng } = CONFIG.venue;
+    // 키가 틀렸거나 도메인이 등록되지 않았을 때 네이버가 이 함수를 부름
+    window.navermap_authFailure = showFallback;
+    loadScript(
+      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(CONFIG.naverMapClientId)}`,
+      () => {
+        if (!window.naver?.maps) return showFallback();
+        const position = new naver.maps.LatLng(lat, lng);
+        const map = new naver.maps.Map(box, { center: position, zoom: 16, scrollWheel: false });
+        new naver.maps.Marker({ position, map, title: name });
+      },
+      showFallback,
+    );
+  }
+
+  function loadKakaoMap(box, showFallback) {
+    const { lat, lng } = CONFIG.venue;
+    loadScript(
+      `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(CONFIG.kakaoMapAppKey)}&autoload=false`,
+      () => {
+        if (!window.kakao?.maps) return showFallback();
+        kakao.maps.load(() => {
+          const position = new kakao.maps.LatLng(lat, lng);
+          const map = new kakao.maps.Map(box, { center: position, level: 3 });
+          map.setZoomable(false);
+          new kakao.maps.Marker({ position, map });
+        });
+      },
+      showFallback,
+    );
   }
 
   function renderAccounts() {
