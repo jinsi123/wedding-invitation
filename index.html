@@ -10,25 +10,25 @@
   <meta property="og:image" content="https://jinsi123.github.io/wedding-invitation/images/og-cover.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Space+Grotesk:wght@300;500&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Space+Grotesk:wght@300;400;500;700&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* 밝고 산뜻한 화이트 무드: 사진 위 흰 손글씨 + 흰 별·꽃 낙서, 본문은 흰 바탕에 부드러운 회색 글씨.
-       포인트 색(세이지 그린)은 달력 동그라미, 숫자, 라벨 같은 작은 강조에만 씀 */
+    /* 검은 표지 + 흰 본문. 포인트 색(남색)은 달력 동그라미, 숫자, 라벨 같은 작은 강조에만 씀 */
     :root {
       --black: #2b2b2b;
       --white: #ffffff;
       --ink: #3d3d3d;
       --muted: #8a8a8a;
       --line: #ececec;
-      --soft: #f7f7f5;
-      --page: #f1f1ee;         /* 휴대폰보다 넓은 화면의 바깥 여백 */
-      --green: #5c7756;        /* 세이지 그린: 흰 바탕 위 작은 글씨도 읽히는 진하기 */
-      --green-light: #eef2ec;
+      --soft: #f7f7f8;
+      --page: #f1f1f3;         /* 휴대폰보다 넓은 화면의 바깥 여백 */
+      --accent: #1f2f54;       /* 남색: 흰 바탕 위 작은 글씨도 잘 읽힘 */
+      --accent-light: #eef1f7;
       /* 영문 필기체: 이어 쓰되 잘 읽히는 Dancing Script */
       --font-hand: "Dancing Script", cursive;
-      --font-en: "Archivo", "Helvetica Neue", sans-serif;
-      --font-serif: "GyeonggiBatang", "Nanum Myeongjo", serif;
-      --font-body: "GyeonggiBatang", "Noto Sans KR", serif;
+      /* Space Grotesk엔 한글이 없어서 한글은 같은 결의 고딕(Noto Sans KR)으로 나옴 */
+      --font-en: "Space Grotesk", "Noto Sans KR", sans-serif;
+      --font-serif: "Space Grotesk", "Noto Sans KR", sans-serif;
+      --font-body: "Space Grotesk", "Noto Sans KR", sans-serif;
     }
     /* 경기천년바탕 Regular (눈누 배포 웹폰트) */
     @font-face {
@@ -49,7 +49,7 @@
     main { max-width: 430px; margin: 0 auto; background: var(--white); min-height: 100vh; overflow: hidden; }
     section { padding: 64px 28px; text-align: center; }
     h2 { margin-bottom: 28px; font-weight: 400; display: grid; gap: 4px; }
-    h2 .script { font-family: var(--font-en); font-size: 13px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; line-height: 1.3; color: var(--green); }
+    h2 .script { font-family: var(--font-en); font-size: 13px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; line-height: 1.3; color: var(--accent); }
     h2 small { font-family: var(--font-body); font-size: 17px; font-weight: 400; color: var(--ink); letter-spacing: .02em; }
     .muted { color: var(--muted); font-size: 14px; }
 
@@ -58,7 +58,7 @@
     .poster {
       /* 72 : 30 비율 유지 */
       --title-size: min(72px, 20vw);
-      --date-size: min(30px, 8.33vw);
+      --date-size: min(22px, 6.1vw);
       position: relative; aspect-ratio: 2 / 3; padding: 0; color: var(--white); overflow: hidden; background: #1c241b;
     }
     /* 배경과 인물 층은 같은 크기 그림이라 같은 object-fit이면 정확히 겹침 */
@@ -96,6 +96,7 @@
       position: absolute; left: 0; right: 0; bottom: 4%;
       display: grid; gap: 2px; text-shadow: 0 1px 8px rgba(0, 0, 0, .35);
     }
+    .poster-names { font-family: var(--font-body); }
     .poster-names b { font-weight: 400; font-size: 15px; letter-spacing: .3em; }
     .poster-names p { font-size: 11px; letter-spacing: .12em; opacity: .9; }
     /* 사진 없이 검은 표지일 때 */
@@ -104,7 +105,7 @@
 
     /* ---------- 본문 ---------- */
     .names { font-family: var(--font-serif); font-size: 20px; letter-spacing: .1em; }
-    .names span { font-family: var(--font-en); color: var(--green); font-size: 16px; margin: 0 10px; letter-spacing: 0; }
+    .names span { font-family: var(--font-en); color: var(--accent); font-size: 16px; margin: 0 10px; letter-spacing: 0; }
     .when { margin: 4px 0 40px; color: var(--muted); font-size: 13px; }
     .greeting p { white-space: pre-line; font-size: 14px; }
     .parents { margin-top: 36px; font-size: 14px; display: grid; gap: 2px; }
@@ -115,10 +116,10 @@
     .calendar th { color: var(--muted); font-weight: 400; padding: 6px 0; font-family: var(--font-body); }
     .calendar td { padding: 3px 0; }
     .calendar td span { display: inline-block; width: 34px; height: 34px; line-height: 34px; }
-    .calendar .sun { color: var(--green); }
-    .calendar .day-on span { border-radius: 50%; background: var(--green); color: var(--white); font-weight: 500; }
+    .calendar .sun { color: var(--accent); }
+    .calendar .day-on span { border-radius: 50%; background: var(--accent); color: var(--white); font-weight: 500; }
     .dday { margin-top: 28px; font-size: 14px; }
-    .dday b { color: var(--green); font-weight: 500; }
+    .dday b { color: var(--accent); font-weight: 500; }
 
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
     .gallery img, .gallery .ph {
@@ -141,18 +142,18 @@
       text-decoration: none; cursor: pointer;
     }
     .btn:active { background: var(--soft); }
-    .btn:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
-    .btn.primary { background: var(--green); border-color: var(--green); color: var(--white); }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--white); }
     .map {
       width: 100%; height: 260px; margin-top: 24px; border: 1px solid var(--line);
-      background: var(--green-light); display: grid; place-items: center; text-align: center;
+      background: var(--accent-light); display: grid; place-items: center; text-align: center;
     }
     .map-fallback { display: grid; gap: 6px; color: var(--ink); text-decoration: none; font-size: 14px; }
-    .map-fallback b { font-family: var(--font-en); color: var(--green); font-size: 14px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1; }
+    .map-fallback b { font-family: var(--font-en); color: var(--accent); font-size: 14px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1; }
     .map-fallback span { text-decoration: underline; text-underline-offset: 3px; }
     .transport { text-align: left; margin-top: 28px; font-size: 14px; }
     .transport dd { white-space: pre-line; }
-    .transport dt { color: var(--green); font-weight: 500; margin-top: 14px; }
+    .transport dt { color: var(--accent); font-weight: 500; margin-top: 14px; }
 
     .account-group { text-align: left; margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
     .account-group summary { padding: 14px 16px; cursor: pointer; list-style: none; font-size: 15px; font-weight: 400; }
