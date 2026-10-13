@@ -10,25 +10,28 @@
   <meta property="og:image" content="https://jinsi123.github.io/wedding-invitation/images/main.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* 모던 블랙&화이트 + 딥그린 포인트. 초록은 작은 강조(날짜, 숫자, 라벨)에만 아껴 씀 */
+    /* 밝고 산뜻한 화이트 무드: 사진 위 흰 손글씨 + 흰 별·꽃 낙서, 본문은 흰 바탕에 부드러운 회색 글씨.
+       포인트 색(세이지 그린)은 달력 동그라미, 숫자, 라벨 같은 작은 강조에만 씀 */
     :root {
-      --black: #141414;
+      --black: #2b2b2b;
       --white: #ffffff;
-      --ink: #1a1a1a;
-      --muted: #727272;
-      --line: #e4e4e4;
-      --soft: #f5f5f5;
-      --green: #2f4b3c;        /* 흰 바탕 위 글씨·채움 모두 대비 충분 */
-      --green-light: #dfe8e1;  /* 지도 대체 박스 등 옅은 바탕 */
+      --ink: #3d3d3d;
+      --muted: #8a8a8a;
+      --line: #ececec;
+      --soft: #f7f7f5;
+      --page: #f1f1ee;         /* 휴대폰보다 넓은 화면의 바깥 여백 */
+      --green: #5c7756;        /* 세이지 그린: 흰 바탕 위 작은 글씨도 읽히는 진하기 */
+      --green-light: #eef2ec;
+      --font-hand: "Sacramento", cursive;
       --font-en: "Archivo", "Helvetica Neue", sans-serif;
       --font-serif: "Nanum Myeongjo", serif;
       --font-body: "Noto Sans KR", sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: var(--black);
+      background: var(--page);
       color: var(--ink);
       font-family: var(--font-body);
       font-weight: 300;
@@ -36,66 +39,44 @@
       -webkit-font-smoothing: antialiased;
     }
     main { max-width: 430px; margin: 0 auto; background: var(--white); min-height: 100vh; overflow: hidden; }
-    section { padding: 72px 28px; text-align: center; }
-    section + section { border-top: 1px solid var(--line); }
-    h2 { margin-bottom: 28px; font-weight: 400; display: grid; gap: 2px; }
-    h2 .script { font-family: var(--font-en); font-size: 20px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; line-height: 1.3; color: var(--black); }
-    h2 small { font-family: var(--font-en); font-size: 10px; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; }
+    section { padding: 64px 28px; text-align: center; }
+    h2 { margin-bottom: 28px; font-weight: 400; display: grid; gap: 4px; }
+    h2 .script { font-family: var(--font-en); font-size: 13px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; line-height: 1.3; color: var(--green); }
+    h2 small { font-family: var(--font-body); font-size: 17px; font-weight: 400; color: var(--ink); letter-spacing: .02em; }
     .muted { color: var(--muted); font-size: 14px; }
 
-    /* ---------- 포스터 히어로 ---------- */
-    .poster { position: relative; aspect-ratio: 724 / 1024; padding: 0; color: var(--white); overflow: hidden; }
+    /* ---------- 표지: 사진 전체 + 흰 손글씨 + 흰 낙서 + 하단 이름 ---------- */
+    .poster { position: relative; aspect-ratio: 9 / 16; padding: 0; color: var(--white); overflow: hidden; }
     .poster-photo {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-      filter: saturate(.75) contrast(1.02);
-      background: linear-gradient(180deg, #d9d9d9 0%, #cfcfcf 48%, #a9b0ab 62%, #5d6a61 74%, #2f3a33 100%);
+      /* 사진이 없을 때(공개 사이트) 하늘·풀밭 느낌의 대체 배경 */
+      background: linear-gradient(180deg, #b9c9d6 0%, #cfd9df 26%, #a6b48e 50%, #73855c 75%, #4c5a3b 100%);
     }
-    .grain {
-      position: absolute; inset: 0; pointer-events: none; opacity: .12; mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-    .corner {
-      position: absolute; top: 6%; font-family: var(--font-en); font-weight: 500;
-      font-size: 13px; letter-spacing: .02em; text-transform: uppercase;
-    }
-    .corner.left { left: 6%; }
-    .corner.right { right: 6%; }
-    /* 사진 위·아래를 어둡게 해서 흰 글씨가 잘 읽히게 함 */
+    /* 위쪽 손글씨와 아래쪽 이름이 잘 읽히게 사진 위·아래만 살짝 어둡게 */
     .shade {
       position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, transparent 18%, transparent 44%, rgba(0,0,0,.55) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,.22) 0%, transparent 30%, transparent 62%, rgba(0,0,0,.42) 100%);
     }
-    /* 얼굴(사진 위쪽 22~50%)을 가리지 않게 제목은 아래쪽에 둠 */
     .poster-title {
-      position: absolute; left: 8%; right: 6%; top: 49.5%;
-      /* 4줄이 하단 크레딧(약 80%부터) 위에서 끝나도록 크기를 맞춤 */
-      font-family: var(--font-en); font-weight: 500; font-size: clamp(24px, 7.2vw, 31px); line-height: 1.12;
-      letter-spacing: .04em; text-transform: uppercase;
-      text-align: left; text-shadow: 0 1px 12px rgba(0, 0, 0, .25);
+      /* 세 줄이 머리 위(세로 약 20%)에서 끝나도록 크기를 맞춤 */
+      position: absolute; left: 0; right: 0; top: 3%;
+      font-family: var(--font-hand); font-weight: 400; font-size: clamp(42px, 12.5vw, 52px); line-height: .86;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, .18);
     }
     .poster-title span { display: block; white-space: nowrap; }
-    .poster-title .l2 { padding-left: 4%; }
-    .poster-title .l3 { padding-left: 12%; }
-    .poster-title .l4 { padding-left: 2%; }
-    /* 2·3번째 줄 단어 앞에 붙는 가는 선 */
-    .poster-title i {
-      display: inline-block; height: 1px; background: currentColor;
-      vertical-align: .35em; margin-right: .2em;
+    /* 레퍼런스처럼 세 줄을 좌우로 엇갈려 배치 */
+    .poster-title .l1 { padding-left: 30%; }
+    .poster-title .l2 { padding-left: 9%; }
+    .poster-title .l3 { padding-left: 46%; }
+    .sparkles { position: absolute; inset: 0; pointer-events: none; color: var(--white); }
+    .sparkles svg { position: absolute; filter: drop-shadow(0 0 3px rgba(255,255,255,.6)); }
+    .poster-names {
+      position: absolute; left: 0; right: 0; bottom: 6.5%;
+      display: grid; gap: 2px; text-shadow: 0 1px 8px rgba(0, 0, 0, .25);
     }
-    .poster-title .l2 i { width: 44%; }
-    .poster-title .l3 i { width: 22%; }
-    .flowers { position: absolute; right: 3%; top: 10%; width: 32%; height: 16%; }
-    .flowers svg { position: absolute; color: var(--white); opacity: .85; }
-    .billing {
-      position: absolute; left: 6%; right: 6%; bottom: 4%;
-      display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 10px; align-items: end;
-      font-family: var(--font-en); text-transform: uppercase;
-    }
-    .billing p { margin: 0; }
-    .billing .tiny { font-size: 7.5px; line-height: 1.35; text-transform: none; text-align: justify; margin-bottom: 10px; }
-    .billing .big { font-size: 13px; font-weight: 500; }
-    .billing .center { font-size: 7.5px; line-height: 1.4; text-align: center; }
-    .billing .right { text-align: right; }
+    .poster-names b { font-weight: 400; font-size: 18px; letter-spacing: .18em; }
+    .poster-names p { font-size: 12px; letter-spacing: .04em; opacity: .92; }
+    .poster-names p:first-of-type { margin-top: 12px; }
 
     /* ---------- 본문 ---------- */
     .names { font-family: var(--font-serif); font-size: 20px; letter-spacing: .1em; }
@@ -131,13 +112,13 @@
     .venue-name { font-family: var(--font-serif); font-size: 19px; }
     .map-links { display: flex; gap: 8px; margin-top: 24px; }
     .btn {
-      flex: 1; padding: 12px 8px; border: 1px solid var(--ink); border-radius: 0;
+      flex: 1; padding: 12px 8px; border: 1px solid #d9d9d9; border-radius: 10px;
       background: var(--white); color: var(--ink); font: inherit; font-size: 14px; font-weight: 400;
       text-decoration: none; cursor: pointer;
     }
     .btn:active { background: var(--soft); }
     .btn:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
-    .btn.primary { background: var(--black); color: var(--white); }
+    .btn.primary { background: var(--green); border-color: var(--green); color: var(--white); }
     .map {
       width: 100%; height: 260px; margin-top: 24px; border: 1px solid var(--line);
       background: var(--green-light); display: grid; place-items: center; text-align: center;
@@ -149,7 +130,7 @@
     .transport dd { white-space: pre-line; }
     .transport dt { color: var(--green); font-weight: 500; margin-top: 14px; }
 
-    .account-group { text-align: left; margin-top: 12px; border: 1px solid var(--line); }
+    .account-group { text-align: left; margin-top: 12px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
     .account-group summary { padding: 14px 16px; cursor: pointer; list-style: none; font-size: 15px; font-weight: 400; }
     .account-group summary::after { content: "＋"; float: right; color: var(--muted); }
     .account-group[open] summary::after { content: "－"; }
@@ -160,13 +141,13 @@
     .account .btn { flex: none; padding: 6px 12px; font-size: 13px; }
 
     .share { display: flex; gap: 8px; }
-    footer { padding: 48px 28px 40px; text-align: center; background: var(--black); color: #9a9a9a; }
-    footer .script { font-family: var(--font-en); font-size: 18px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--white); line-height: 1.4; }
+    footer { padding: 48px 28px 40px; text-align: center; background: var(--soft); color: var(--muted); }
+    footer .script { font-family: var(--font-hand); font-size: 40px; color: var(--ink); line-height: 1.2; }
     footer p:not(.script) { font-family: var(--font-en); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px; }
 
     .toast {
       position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
-      background: var(--black); color: var(--white); padding: 10px 18px;
+      background: var(--black); color: var(--white); padding: 10px 18px; border-radius: 999px;
       font-size: 14px; opacity: 0; transition: opacity .25s; pointer-events: none;
     }
     .toast.show { opacity: 1; }
@@ -180,40 +161,32 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="flower" viewBox="0 0 100 100">
-    <g fill="none" stroke="currentColor" stroke-width="1.6">
-      <path d="M50 42 C38 20 46 6 54 10 C64 15 60 30 50 42Z"/>
-      <path d="M50 42 C38 20 46 6 54 10 C64 15 60 30 50 42Z" transform="rotate(72 50 50)"/>
-      <path d="M50 42 C38 20 46 6 54 10 C64 15 60 30 50 42Z" transform="rotate(144 50 50)"/>
-      <path d="M50 42 C38 20 46 6 54 10 C64 15 60 30 50 42Z" transform="rotate(216 50 50)"/>
-      <path d="M50 42 C38 20 46 6 54 10 C64 15 60 30 50 42Z" transform="rotate(288 50 50)"/>
-      <circle cx="50" cy="50" r="6"/>
+  <!-- 표지 낙서: 반짝이는 별과 작은 꽃 -->
+  <symbol id="star" viewBox="0 0 100 100">
+    <path fill="currentColor" d="M50 0 C54 36 64 46 100 50 C64 54 54 64 50 100 C46 64 36 54 0 50 C36 46 46 36 50 0Z"/>
+  </symbol>
+  <symbol id="blossom" viewBox="0 0 100 100">
+    <g fill="currentColor">
+      <circle cx="50" cy="24" r="20"/>
+      <circle cx="75" cy="42" r="20"/>
+      <circle cx="65" cy="72" r="20"/>
+      <circle cx="35" cy="72" r="20"/>
+      <circle cx="25" cy="42" r="20"/>
     </g>
+    <circle cx="50" cy="50" r="9" fill="#f2d98a"/>
   </symbol>
 </svg>
 <main>
   <section class="poster" aria-label="청첩장 표지">
     <img class="poster-photo" id="heroPhoto" alt="">
     <div class="shade"></div>
-    <div class="grain"></div>
-    <p class="corner left" id="cornerDate"></p>
-    <p class="corner right" id="cornerNames"></p>
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
     <p class="poster-title" id="posterTitle"></p>
-    <div class="flowers" aria-hidden="true">
-      <svg viewBox="0 0 100 100" style="width:46%;right:0;top:0;transform:rotate(12deg)"><use href="#flower"/></svg>
-      <svg viewBox="0 0 100 100" style="width:32%;left:4%;top:18%;transform:rotate(-20deg)"><use href="#flower"/></svg>
-      <svg viewBox="0 0 100 100" style="width:20%;left:38%;bottom:-6%;transform:rotate(30deg)"><use href="#flower"/></svg>
-    </div>
-    <div class="billing">
-      <div>
-        <p class="tiny" id="billLeft"></p>
-        <p class="big">Save the date</p>
-      </div>
-      <p class="center" id="billCenter"></p>
-      <div class="right">
-        <p class="tiny" id="billRight"></p>
-        <p class="big">With love</p>
-      </div>
+    <div class="poster-names">
+      <b id="posterGroom"></b>
+      <b id="posterBride"></b>
+      <p id="posterWhen"></p>
+      <p id="posterVenue"></p>
     </div>
   </section>
 
@@ -280,8 +253,8 @@
     groom: { name: "김병준", short: "병준", en: "Byungjun", father: "김남흥", mother: "정미경", order: "아들" },
     bride: { name: "진시연", short: "시연", en: "Siyeon", father: "진호성", mother: "박순화", order: "딸" },
     date: "2027-10-30T11:00:00",   // 예식 일시 (24시간제)
-    // 표지 필기체 문구. 한 줄씩 배열로, 2·3번째 줄 앞에 가는 선이 붙습니다
-    posterTitle: ["Together", "From", "This", "Day"],
+    // 표지 손글씨 문구. 세 줄까지, 줄마다 좌우로 엇갈려 배치됩니다
+    posterTitle: ["Together", "from this", "Day"],
     // address를 비워두면 "추후 안내"로 표시됩니다
     venue: {
       name: "아르비아웨딩홀",
@@ -321,7 +294,6 @@
   /* ============================================================ */
 
   const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
-  const WEEKDAYS_EN = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const $ = (id) => document.getElementById(id);
   const el = (tag, props = {}, children = []) => {
     const node = Object.assign(document.createElement(tag), props);
@@ -337,10 +309,6 @@
     const h = d.getHours();
     const time = `${h < 12 ? "오전" : "오후"} ${h % 12 || 12}시${d.getMinutes() ? ` ${d.getMinutes()}분` : ""}`;
     return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 ${WEEKDAYS[d.getDay()]}요일 ${time}`;
-  };
-  const enTime = (d) => {
-    const h = d.getHours();
-    return `${h % 12 || 12}${d.getMinutes() ? `:${pad(d.getMinutes())}` : ""}${h < 12 ? "AM" : "PM"}`;
   };
 
   function toast(message) {
@@ -369,19 +337,41 @@
     photo.src = CONFIG.heroPhoto;
     photo.onerror = () => photo.removeAttribute("src");
 
-    $("cornerDate").textContent = dotDate;
-    $("cornerNames").textContent = enCouple;
-    const ruled = new Set([1, 2]);
-    CONFIG.posterTitle.forEach((word, i) => {
-      const line = el("span", { className: `l${i + 1}` }, ruled.has(i) ? [el("i"), word] : [word]);
-      $("posterTitle").append(line);
+    CONFIG.posterTitle.forEach((words, i) => {
+      $("posterTitle").append(el("span", { className: `l${i + 1}`, textContent: words }));
     });
 
-    const when = `${dotDate} ${WEEKDAYS_EN[wedding.getDay()]} ${enTime(wedding)}`;
-    $("billLeft").textContent = `from the two of us, ${CONFIG.groom.en.toLowerCase()} and ${CONFIG.bride.en.toLowerCase()}, to the people we love`;
-    $("billRight").textContent = `our wedding day ${when.toLowerCase()}. please come and celebrate with us`;
-    $("billCenter").textContent = `${when} · ${enCouple} wedding ceremony. all of our friends and family are warmly invited. seats are reserved for the people we love.`;
+    $("posterGroom").textContent = CONFIG.groom.name;
+    $("posterBride").textContent = CONFIG.bride.name;
+    $("posterWhen").textContent = formatDate(wedding);
+    const { name, hall, address } = CONFIG.venue;
+    $("posterVenue").textContent = address ? [name, hall].filter(Boolean).join(" ") : "";
     $("footNote").textContent = `${enCouple} · ${dotDate}`;
+    renderSparkles();
+  }
+
+  // [모양, 가로%, 세로%, 크기px] - 얼굴(가로 20~86%, 세로 27~50%)과 글씨 자리를 피해 흩뿌림
+  const SPARKLES = [
+    ["star", 6, 40, 14], ["blossom", 12, 49, 12], ["star", 4, 58, 9], ["blossom", 9, 67, 14],
+    ["star", 17, 74, 10], ["star", 91, 36, 12], ["blossom", 93, 46, 10], ["star", 88, 56, 15],
+    ["blossom", 94, 65, 12], ["star", 31, 61, 8], ["blossom", 47, 67, 10], ["star", 62, 71, 12],
+    ["blossom", 77, 60, 9], ["star", 40, 76, 9], ["blossom", 71, 77, 11], ["star", 85, 27, 10],
+  ];
+
+  const SPARKLE_SCALE = 1.4;
+
+  function renderSparkles() {
+    const ns = "http://www.w3.org/2000/svg";
+    SPARKLES.forEach(([shape, x, y, size]) => {
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("viewBox", "0 0 100 100");
+      const px = Math.round(size * SPARKLE_SCALE);
+      svg.style.cssText = `left:${x}%;top:${y}%;width:${px}px;height:${px}px`;
+      const use = document.createElementNS(ns, "use");
+      use.setAttribute("href", `#${shape}`);
+      svg.append(use);
+      $("sparkles").append(svg);
+    });
   }
 
   function renderGreeting() {
