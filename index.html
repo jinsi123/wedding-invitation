@@ -10,7 +10,7 @@
   <meta property="og:image" content="https://jinsi123.github.io/wedding-invitation/images/cover-illustration.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Bodoni+Moda:opsz,wght@6..96,600&family=Noto+Serif+KR:wght@200&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     /* 밝고 산뜻한 화이트 무드: 사진 위 흰 손글씨 + 흰 별·꽃 낙서, 본문은 흰 바탕에 부드러운 회색 글씨.
        포인트 색(세이지 그린)은 달력 동그라미, 숫자, 라벨 같은 작은 강조에만 씀 */
@@ -53,43 +53,46 @@
     h2 small { font-family: var(--font-body); font-size: 17px; font-weight: 400; color: var(--ink); letter-spacing: .02em; }
     .muted { color: var(--muted); font-size: 14px; }
 
-    /* ---------- 표지: 사진 전체 + 흰 손글씨 + 흰 낙서 + 하단 이름 ---------- */
-    .poster { position: relative; aspect-ratio: 9 / 16; padding: 0; color: var(--white); overflow: hidden; }
-    .poster-photo {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-      /* 사진이 없을 때(공개 사이트) 하늘·풀밭 느낌의 대체 배경 */
-      background: linear-gradient(180deg, #b9c9d6 0%, #cfd9df 26%, #a6b48e 50%, #73855c 75%, #4c5a3b 100%);
+    /* ---------- 표지: 영화 포스터식. 큰 세리프 제목이 두 사람 "뒤"에 있는 입체 구성 ----------
+       쌓는 순서: 배경 그림 → 어둡게 → 날짜·제목 → 인물 층(투명 PNG) → 하단 이름 */
+    .poster {
+      --title-size: clamp(34px, 11.4vw, 49px);
+      position: relative; aspect-ratio: 2 / 3; padding: 0; color: var(--white); overflow: hidden; background: #1c241b;
     }
-    /* 위쪽 손글씨와 아래쪽 이름이 잘 읽히게 사진 위·아래만 살짝 어둡게 */
+    /* 배경과 인물 층은 같은 크기 그림이라 같은 object-fit이면 정확히 겹침 */
+    .poster-photo, .poster-front {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .poster-photo { filter: saturate(.8) brightness(.92); }
+    .poster-front { filter: saturate(.85); pointer-events: none; }
+    /* 흰 글씨가 하늘 위에서도 읽히게 위쪽과 맨 아래를 어둡게 */
     .shade {
       position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(180deg, rgba(0,0,0,.22) 0%, transparent 30%, transparent 62%, rgba(0,0,0,.42) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.3) 38%, transparent 55%, transparent 78%, rgba(0,0,0,.45) 100%);
     }
+    .poster-date {
+      position: absolute; left: 0; right: 0; top: 29.5%;
+      font-family: "Noto Serif KR", serif; font-weight: 200;
+      font-size: calc(var(--title-size) / 1.5); letter-spacing: .04em; line-height: 1;
+    }
+    /* 머리(세로 39~42%)가 글자 아래쪽을 가리도록 위치를 맞춤 */
     .poster-title {
-      /* 세 줄이 머리 위(세로 약 20%)에서 끝나도록 크기를 맞춤 */
-      position: absolute; left: 0; right: 0; top: 3%;
-      font-family: var(--font-hand); font-weight: 400; font-size: clamp(63px, 18.75vw, 78px); line-height: .95;
-      text-shadow: 0 1px 10px rgba(0, 0, 0, .18);
+      position: absolute; left: 0; right: 0; top: 35.8%;
+      font-family: "Bodoni Moda", "Times New Roman", serif; font-weight: 600;
+      font-size: var(--title-size); line-height: 1; letter-spacing: .01em; text-transform: uppercase;
     }
     .poster-title span { display: block; white-space: nowrap; }
-    /* 레퍼런스처럼 세 줄을 좌우로 엇갈려 배치 */
-    .poster-title .l1 { padding-left: 14%; }
-    .poster-title .l2 { padding-left: 50%; }
-    .poster-title .l3 { padding-left: 30%; }
     .sparkles { position: absolute; inset: 0; pointer-events: none; color: var(--white); }
     .sparkles svg { position: absolute; filter: drop-shadow(0 0 4px rgba(255,255,255,.35)); }
-    /* 사진 없이 검은 표지일 때: 가운데 쪽으로 글씨를 모음 */
-    .poster.no-photo { background: #000; }
-    .poster.no-photo .shade { display: none; }
-    .poster.no-photo .poster-title { top: 22%; text-shadow: none; }
-    .poster.no-photo .poster-names { bottom: 14%; text-shadow: none; }
     .poster-names {
-      position: absolute; left: 0; right: 0; bottom: 6.5%;
-      display: grid; gap: 2px; text-shadow: 0 1px 8px rgba(0, 0, 0, .25);
+      position: absolute; left: 0; right: 0; bottom: 4%;
+      display: grid; gap: 2px; text-shadow: 0 1px 8px rgba(0, 0, 0, .35);
     }
-    .poster-names b { font-weight: 400; font-size: 27px; letter-spacing: .16em; line-height: 1.5; }
-    .poster-names p { font-size: 17px; letter-spacing: .02em; opacity: .95; line-height: 1.6; }
-    .poster-names p:first-of-type { margin-top: 12px; }
+    .poster-names b { font-weight: 400; font-size: 15px; letter-spacing: .3em; }
+    .poster-names p { font-size: 11px; letter-spacing: .12em; opacity: .9; }
+    /* 사진 없이 검은 표지일 때 */
+    .poster.no-photo { background: #000; }
+    .poster.no-photo .shade, .poster.no-photo .poster-front { display: none; }
 
     /* ---------- 본문 ---------- */
     .names { font-family: var(--font-serif); font-size: 20px; letter-spacing: .1em; }
@@ -191,11 +194,11 @@
     <img class="poster-photo" id="heroPhoto" alt="">
     <div class="shade"></div>
     <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+    <p class="poster-date" id="posterDate"></p>
     <p class="poster-title" id="posterTitle"></p>
+    <img class="poster-front" id="heroFront" alt="" hidden>
     <div class="poster-names">
-      <b id="posterGroom"></b>
-      <b id="posterBride"></b>
-      <p id="posterWhen"></p>
+      <b id="posterCouple"></b>
       <p id="posterVenue"></p>
     </div>
   </section>
@@ -264,7 +267,8 @@
     bride: { name: "진시연", short: "시연", en: "Siyeon", father: "진호성", mother: "박순화", order: "딸" },
     date: "2027-10-30T11:00:00",   // 예식 일시 (24시간제)
     // 표지 손글씨 문구. 세 줄까지, 줄마다 좌우로 엇갈려 배치됩니다
-    posterTitle: ["Wedding", "Day"],
+    posterTitle: ["Wedding Day"],
+    snowflakes: false,              // 표지 눈꽃 뿌리기
     // address를 비워두면 "추후 안내"로 표시됩니다
     venue: {
       name: "아르비아웨딩홀",
@@ -283,8 +287,10 @@
     greeting:
       "서로 다른 길을 걸어온 두 사람이\n이제 같은 길을 함께 걸어가려 합니다.\n\n" +
       "저희의 새로운 시작을\n축복해 주시면 감사하겠습니다.",
-    // 표지 사진. 비워두면 검은 표지. 예: "images/cover-illustration.jpg"(직접 그린 일러스트)
-    heroPhoto: "",
+    // 표지 사진. 비워두면 검은 표지.
+    // heroFront는 사진 속 인물만 남긴 투명 PNG로, 제목 위에 겹쳐서 글자가 인물 뒤에 있는 것처럼 보이게 함
+    heroPhoto: "images/cover-illustration-bg.jpg",
+    heroFront: "images/cover-illustration-front.png",
     gallery: ["images/childhood.jpg", "images/main.jpg"],  // 사진 추가: images/ 폴더에 넣고 여기에 파일명 추가
     transport: [
       { label: "지하철", text: "8호선·경의중앙선 구리역 하차\n8호선 7번 출구 또는 경의중앙선 1번 출구에서 도보 약 5분" },
@@ -356,17 +362,26 @@
       photo.closest(".poster").classList.add("no-photo");
     }
 
+    const front = $("heroFront");
+    if (CONFIG.heroPhoto && CONFIG.heroFront) {
+      front.src = CONFIG.heroFront;
+      front.hidden = false;
+      front.onerror = () => { front.hidden = true; };
+    }
+
     CONFIG.posterTitle.forEach((words, i) => {
       $("posterTitle").append(el("span", { className: `l${i + 1}`, textContent: words }));
     });
 
-    $("posterGroom").textContent = CONFIG.groom.name;
-    $("posterBride").textContent = CONFIG.bride.name;
-    $("posterWhen").textContent = formatDate(wedding);
+    // 예: "2027. 10. 30. (토) 11시"
+    const minutes = wedding.getMinutes() ? ` ${wedding.getMinutes()}분` : "";
+    $("posterDate").textContent = `${wedding.getFullYear()}. ${wedding.getMonth() + 1}. ${wedding.getDate()}. ` +
+      `(${WEEKDAYS[wedding.getDay()]}) ${wedding.getHours()}시${minutes}`;
+    $("posterCouple").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
     const { name, hall, address } = CONFIG.venue;
     $("posterVenue").textContent = address ? [name, hall].filter(Boolean).join(" ") : "";
     $("footNote").textContent = `${enCouple} · ${dotDate}`;
-    renderSparkles();
+    if (CONFIG.snowflakes) renderSparkles();
   }
 
   // 표지에 흩뿌리는 연한 눈꽃. 글씨 자리(가로%, 세로% 범위)는 피함

@@ -5,3 +5,5 @@ images/*.png
 images/*.heic
 # 직접 그린 표지 일러스트는 실제 사진이 아니라 공개 가능
 !images/cover-illustration.jpg
+!images/cover-illustration-bg.jpg
+!images/cover-illustration-front.png
