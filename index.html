@@ -10,7 +10,7 @@
   <meta property="og:image" content="https://jinsi123.github.io/wedding-invitation/images/main.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     /* 밝고 산뜻한 화이트 무드: 사진 위 흰 손글씨 + 흰 별·꽃 낙서, 본문은 흰 바탕에 부드러운 회색 글씨.
        포인트 색(세이지 그린)은 달력 동그라미, 숫자, 라벨 같은 작은 강조에만 씀 */
@@ -24,8 +24,8 @@
       --page: #f1f1ee;         /* 휴대폰보다 넓은 화면의 바깥 여백 */
       --green: #5c7756;        /* 세이지 그린: 흰 바탕 위 작은 글씨도 읽히는 진하기 */
       --green-light: #eef2ec;
-      /* 영문 손글씨: Lucida Handwriting은 휴대폰에 없어서 비슷하게 덜 흘려 쓴 Kalam 사용 */
-      --font-hand: "Kalam", "Lucida Handwriting", cursive;
+      /* 영문 필기체: 이어 쓰되 잘 읽히는 Dancing Script */
+      --font-hand: "Dancing Script", cursive;
       --font-en: "Archivo", "Helvetica Neue", sans-serif;
       --font-serif: "GyeonggiBatang", "Nanum Myeongjo", serif;
       --font-body: "GyeonggiBatang", "Noto Sans KR", serif;
@@ -68,7 +68,7 @@
     .poster-title {
       /* 세 줄이 머리 위(세로 약 20%)에서 끝나도록 크기를 맞춤 */
       position: absolute; left: 0; right: 0; top: 3%;
-      font-family: var(--font-hand); font-weight: 300; font-size: clamp(42px, 12.5vw, 52px); line-height: 1.05;
+      font-family: var(--font-hand); font-weight: 400; font-size: clamp(63px, 18.75vw, 78px); line-height: .95;
       text-shadow: 0 1px 10px rgba(0, 0, 0, .18);
     }
     .poster-title span { display: block; white-space: nowrap; }
@@ -82,8 +82,8 @@
       position: absolute; left: 0; right: 0; bottom: 6.5%;
       display: grid; gap: 2px; text-shadow: 0 1px 8px rgba(0, 0, 0, .25);
     }
-    .poster-names b { font-weight: 400; font-size: 18px; letter-spacing: .18em; }
-    .poster-names p { font-size: 12px; letter-spacing: .04em; opacity: .92; }
+    .poster-names b { font-weight: 400; font-size: 27px; letter-spacing: .16em; line-height: 1.5; }
+    .poster-names p { font-size: 17px; letter-spacing: .02em; opacity: .95; line-height: 1.6; }
     .poster-names p:first-of-type { margin-top: 12px; }
 
     /* ---------- 본문 ---------- */
@@ -150,7 +150,7 @@
 
     .share { display: flex; gap: 8px; }
     footer { padding: 48px 28px 40px; text-align: center; background: var(--soft); color: var(--muted); }
-    footer .script { font-family: var(--font-hand); font-weight: 300; font-size: 34px; color: var(--ink); line-height: 1.2; }
+    footer .script { font-family: var(--font-hand); font-weight: 400; font-size: 44px; color: var(--ink); line-height: 1.2; }
     footer p:not(.script) { font-family: var(--font-en); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px; }
 
     .toast {
@@ -363,7 +363,7 @@
     ["star", 6, 40, 14], ["blossom", 12, 49, 12], ["star", 4, 58, 9], ["blossom", 9, 67, 14],
     ["star", 17, 74, 10], ["star", 91, 36, 12], ["blossom", 93, 46, 10], ["star", 88, 56, 15],
     ["blossom", 94, 65, 12], ["star", 31, 61, 8], ["blossom", 47, 67, 10], ["star", 62, 71, 12],
-    ["blossom", 77, 60, 9], ["star", 40, 76, 9], ["blossom", 71, 77, 11], ["star", 85, 27, 10],
+    ["blossom", 77, 60, 9], ["star", 34, 69, 9], ["blossom", 77, 70, 11], ["star", 85, 27, 10],
   ];
 
   const SPARKLE_SCALE = 1.4;
