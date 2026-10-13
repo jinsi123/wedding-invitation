@@ -58,6 +58,8 @@
     }
     h2 { margin-bottom: 44px; font-weight: 400; display: grid; gap: 6px; }
     h2 small { font-family: var(--font-body); font-size: 24px; font-weight: 500; color: var(--ink); letter-spacing: -.01em; }
+    /* 제목 아래 가운데 짧고 얇은 은회색 줄 */
+    h2::after { content: ""; justify-self: center; width: 28px; height: 1px; margin-top: 14px; background: #b9bec4; }
     .muted { color: var(--muted); font-size: 15px; }
 
     /* ---------- 표지: 영화 포스터식. 큰 세리프 제목이 두 사람 "뒤"에 있는 입체 구성 ----------
