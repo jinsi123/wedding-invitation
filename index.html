@@ -10,7 +10,7 @@
   <meta property="og:image" content="https://jinsi123.github.io/wedding-invitation/images/og-cover.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Space+Grotesk:wght@300;400;500;700&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Archivo:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     /* 검은 표지 + 흰 본문. 포인트 색(남색)은 달력 동그라미, 숫자, 라벨 같은 작은 강조에만 씀 */
     :root {
@@ -56,15 +56,14 @@
       min-height: 100vh; min-height: 100dvh;
       display: flex; flex-direction: column; justify-content: center;
     }
-    h2 { margin-bottom: 44px; font-weight: 400; display: grid; gap: 6px; }
-    h2 small { font-family: var(--font-body); font-size: 24px; font-weight: 500; color: var(--ink); letter-spacing: -.01em; }
-    /* 제목 아래 가운데 짧고 얇은 은회색 줄 */
-    h2::after { content: ""; justify-self: center; width: 28px; height: 1px; margin-top: 14px; background: #b9bec4; }
-    /* 예식 일시·사진첩·찾아오시는 길: 줄을 글자 너비와 같게, 옅게 */
-    /* 글자와 줄 사이는 약 2mm: 제목 줄 간격 여백을 없애고 4px만 띄움 */
-    h2.underline-full { align-self: center; width: fit-content; gap: 0; }
-    h2.underline-full small { line-height: 1.2; }
-    h2.underline-full::after { width: 100%; margin-top: 4px; background: rgba(61, 61, 61, .25); }
+    /* 페이지 제목: 글자 너비만큼의 옅은 밑줄을 글자 바로 아래(2px)에 붙임.
+       줄 높이 여백이 줄을 밀어내지 않게 제목 글자의 line-height를 1로 둠 */
+    h2 {
+      margin-bottom: 44px; font-weight: 400;
+      display: grid; align-self: center; width: fit-content;
+    }
+    h2 small { font-family: var(--font-body); font-size: 24px; font-weight: 500; color: var(--ink); letter-spacing: -.01em; line-height: 1; }
+    h2::after { content: ""; width: 100%; height: 1px; margin-top: 2px; background: rgba(61, 61, 61, .25); }
     .muted { color: var(--muted); font-size: 15px; }
 
     /* ---------- 표지: 영화 포스터식. 큰 세리프 제목이 두 사람 "뒤"에 있는 입체 구성 ----------
@@ -221,7 +220,6 @@
 
     .share { display: flex; gap: 8px; }
     footer { padding: 48px 28px 40px; text-align: center; background: var(--soft); color: var(--muted); }
-    footer .script { font-family: var(--font-hand); font-weight: 400; font-size: 44px; color: var(--ink); line-height: 1.2; }
     footer p:not(.script) { font-family: var(--font-en); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px; }
 
     .toast {
@@ -282,19 +280,19 @@
   </section>
 
   <section class="fade">
-    <h2 class="underline-full"><small>예식 일시</small></h2>
+    <h2><small>예식 일시</small></h2>
     <p id="dateLine"></p>
     <table class="calendar" id="calendar"></table>
     <p class="dday" id="dday"></p>
   </section>
 
   <section class="fade" style="padding-left:0;padding-right:0">
-    <h2 class="underline-full"><small>사진첩</small></h2>
+    <h2><small>사진첩</small></h2>
     <div class="gallery" id="gallery"></div>
   </section>
 
   <section class="fade">
-    <h2 class="underline-full"><small>찾아오시는 길</small></h2>
+    <h2><small>찾아오시는 길</small></h2>
     <p class="venue-name" id="venueName"></p>
     <p class="muted" id="venueAddress"></p>
     <p class="muted" id="venuePhone"></p>
@@ -318,7 +316,6 @@
   </section>
 
   <footer>
-    <p class="script">Thank you</p>
     <p id="footNote"></p>
   </footer>
 </main>
